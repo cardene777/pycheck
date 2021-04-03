@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}home{% endblock %}
+
+{% block content %}
+    <div class="container">
+      <div class="bg-light p-3 p-sm-5 my-4 rounded">
+        <h1 class="display-4">Home</h1>
+        <hr class="my-4">
+        <p>ホーム</p>
+      </div>
+    </div>
+    <div class="container">
+        <div class="container">
+            <div class="btns">
+                <p>
+                    <a href="{% url 'skill:upload' username=user.username%}" class="btn" style="background-color: #77c7e2; color: #303f42;" tabindex="-1" role="button" aria-disabled="true">
+                        画像のアップロード
+                        <i class="fas fa-upload"></i>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
