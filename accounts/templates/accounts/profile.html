@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}profile{% endblock %}
+
+{% block content %}
+    <div class="container">
+      <div class="bg-light p-3 p-sm-5 my-4 rounded">
+        <h1 class="display-4">Profile</h1>
+        <hr class="my-4">
+        <p>プロフィール</p>
+      </div>
+    </div>
+    <div class="container">
+        <h1>ユーザー名：{{ username }}</h1>
+        <h1>平均正答率：{{ average_current }}</h1>
+        {% for user_data in user_datas %}
+            <ul>
+                <li>問題番号：{{ user_data.question_number }}</li>
+                <li>問題レベル：{{ user_data.question_level }}</li>
+                <li>回答時間：{{ user_data.answer_time }}</li>
+                <li>点数：{{ user_data.score }}</li>
+            </ul>
+        {% endfor %}
+    </div>
+{% endblock %}
