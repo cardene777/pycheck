@@ -20,7 +20,7 @@ def ocr(image_path):
     image_path = str(image_path).replace(" ", "_")
     # 使用する画像を指定してOCRを実行
     txt = tool.image_to_string(
-        Image.open(f"media/{str(image_path)}"),
+        Image.open(f"media/images/{str(image_path)}"),
         lang="jpn",
         builder=pyocr.builders.TextBuilder()
     )
@@ -60,8 +60,9 @@ def upload(request, username):
         # form = ImageForm(request.POST, request.FILES)
         print(f"file: {request.FILES['file']}")
         print(username)
+        print(request.FILES["file"])
         image = Image()
-        image.image = request.FILES["file"]
+        image.image = request.FILES['file']
         image.username = username
         image.save()
         username, question_number, question_level, answer_time, score = ocr(request.FILES.get("file"))
