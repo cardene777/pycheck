@@ -121,7 +121,7 @@ LOGIN_REDIRECT_URL = 'skill:home'  # ログイン後のリダイレクト先
 LOGOUT_REDIRECT_URL = 'skill:home'  # ログアウト後のリダイレクト先
 
 # デプロイ設定
-DEBUG = True
+DEBUG = False
 
 try:
     from .local_settings import *
@@ -140,8 +140,8 @@ if not DEBUG:
     env = environ.Env()
     env.read_env(os.path.join(BASE_DIR, '.env'))
 
-    SECRET_KEY = env('SECRET_KEY')
-    ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
+    SECRET_KEY = "ol*sk+=(_sy#r#ymu+-#sxpqx85kg$yxz_x71vj^*uai%un4aa"
+    ALLOWED_HOSTS = "127.0.0.1"
 
     # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     # EMAIL_HOST = 'smtp.gmail.com'
