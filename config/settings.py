@@ -74,9 +74,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
    'default': {
        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-       'NAME': 'myproject',
-       'USER': 'myprojectuser',
-       'PASSWORD': '****',
+       'NAME': 'pycheck',
+       'USER': 'pycheck',
+       'PASSWORD': "pycheck6329",
        'HOST': 'localhost',
        'PORT': '',
    }
