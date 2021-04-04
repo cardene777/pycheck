@@ -141,7 +141,7 @@ if not DEBUG:
     env.read_env(os.path.join(BASE_DIR, '.env'))
 
     SECRET_KEY = "ol*sk+=(_sy#r#ymu+-#sxpqx85kg$yxz_x71vj^*uai%un4aa"
-    ALLOWED_HOSTS = "127.0.0.1"
+    ALLOWED_HOSTS = ["127.0.0.1", "45.32.51.171"]
 
     # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     # EMAIL_HOST = 'smtp.gmail.com'
