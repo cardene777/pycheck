@@ -6,6 +6,7 @@ from .models import Image, SkillCheckData
 class HomeView(generic.TemplateView):
     template_name = "skill/home.html"
 
+
 def ocr(image_path):
     from PIL import Image
     import pyocr
@@ -19,7 +20,7 @@ def ocr(image_path):
     image_path = str(image_path).replace(" ", "_")
     # 使用する画像を指定してOCRを実行
     txt = tool.image_to_string(
-        Image.open(f"media/skill/images/{str(image_path)}"),
+        Image.open(f"media/{str(image_path)}"),
         lang="jpn",
         builder=pyocr.builders.TextBuilder()
     )
@@ -38,8 +39,14 @@ def ocr(image_path):
 
     print(new_texts)
     username = new_texts[0]
-    question_number = new_texts[new_texts.index("受験結果問題") + 2].split(":")[0]
-    question_level = new_texts[new_texts.index("受験結果問題") + 2].split(":")[0][0]
+    try:
+        question_number = new_texts[new_texts.index("受験結果問題") + 2].split(":")[0]
+    except ValueError:
+        question_number = new_texts[new_texts.index("受験結果") + 2].split(":")[0]
+    try:
+        question_level = new_texts[new_texts.index("受験結果問題") + 2].split(":")[0][0]
+    except ValueError:
+        question_level = new_texts[new_texts.index("受験結果") + 2].split(":")[0][0]
     answer_time = new_texts[new_texts.index("解答時間:") + 1]
     try:
         score = new_texts[new_texts.index("スコァ:") + 1].split("点")[0]

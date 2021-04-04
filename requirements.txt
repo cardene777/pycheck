@@ -1,0 +1,6 @@
+myvenv
+Django~=3.1.4
+Pillow~=8.1.0
+django-widget-tweaks~=1.4.8
+django-environ~=0.4.5
+gunicorn~=20.0.4

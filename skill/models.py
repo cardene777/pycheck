@@ -48,8 +48,8 @@ class Image(models.Model):
     )
     image = models.ImageField(
         verbose_name="画像",
-        upload_to='skill/images/',
-        default="skill/images/paiza.png"
+        upload_to='/images/',
+        default="images/paiza.png"
     )
 
     def __str__(self):
