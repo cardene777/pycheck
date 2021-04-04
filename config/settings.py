@@ -72,10 +72,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+   'default': {
+       'ENGINE': 'django.db.backends.postgresql_psycopg2',
+       'NAME': 'myproject',
+       'USER': 'myprojectuser',
+       'PASSWORD': '****',
+       'HOST': 'localhost',
+       'PORT': '',
+   }
 }
 
 # Password validation
@@ -133,15 +137,17 @@ if DEBUG:
     ALLOWED_HOSTS = ['*']
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 if not DEBUG:
-    import environ
-
-    env = environ.Env()
-    env.read_env(os.path.join(BASE_DIR, '.env'))
-
     SECRET_KEY = "ol*sk+=(_sy#r#ymu+-#sxpqx85kg$yxz_x71vj^*uai%un4aa"
-    ALLOWED_HOSTS = ["127.0.0.1", "45.32.51.171"]
+    ALLOWED_HOSTS = ["127.0.0.1", "45.77.179.208"]
 
     STATIC_ROOT = '/usr/share/nginx/html/static'
     MEDIA_ROOT = '/usr/share/nginx/html/media/'
