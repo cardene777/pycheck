@@ -20,6 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = "ol*sk+=(_sy#r#ymu+-#sxpqx85kg$yxz_x71vj^*uai%un4aa"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
@@ -72,14 +73,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.postgresql_psycopg2',
-       'NAME': 'pycheck',
-       'USER': 'pycheck',
-       'PASSWORD': "pycheck6329",
-       'HOST': 'localhost',
-       'PORT': '',
-   }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 # Password validation
@@ -125,7 +122,7 @@ LOGIN_REDIRECT_URL = 'skill:home'  # ログイン後のリダイレクト先
 LOGOUT_REDIRECT_URL = 'skill:home'  # ログアウト後のリダイレクト先
 
 # デプロイ設定
-DEBUG = False
+DEBUG = True
 
 try:
     from .local_settings import *
@@ -146,7 +143,6 @@ if DEBUG:
 }
 
 if not DEBUG:
-    SECRET_KEY = "ol*sk+=(_sy#r#ymu+-#sxpqx85kg$yxz_x71vj^*uai%un4aa"
     ALLOWED_HOSTS = ["127.0.0.1", "localhost", "66.42.39.75"]
 
     STATIC_ROOT = '/usr/share/nginx/html/static'
