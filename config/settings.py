@@ -136,7 +136,7 @@ if DEBUG:
     }
 
 if not DEBUG:
-    ALLOWED_HOSTS = ["127.0.0.1", "localhost", "108.61.187.135"]
+    ALLOWED_HOSTS = ["127.0.0.1", "localhost", "45.32.248.236"]
 
     STATIC_ROOT = '/usr/share/nginx/html/static'
     MEDIA_ROOT = '/usr/share/nginx/html/media/'
