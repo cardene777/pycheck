@@ -11,16 +11,22 @@
         <p>ホーム</p>
       </div>
     </div>
-    <div class="container">
+    {% if user.username %}
         <div class="container">
-            <div class="btns">
-                <p>
-                    <a href="{% url 'skill:upload' username=user.username%}" class="btn" style="background-color: #77c7e2; color: #303f42;" tabindex="-1" role="button" aria-disabled="true">
-                        画像のアップロード
-                        <i class="fas fa-upload"></i>
-                    </a>
-                </p>
+            <div class="container">
+                <div class="btns">
+                    <p>
+                        <a href="{% url 'skill:upload' username=user.username%}" class="btn" style="background-color: #77c7e2; color: #303f42;" tabindex="-1" role="button" aria-disabled="true">
+                            画像のアップロード
+                            <i class="fas fa-upload"></i>
+                        </a>
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
+    {% else %}
+        <div class="container">
+            <h3>ログインしてください！</h3>
+        </div>
+    {% endif %}
 {% endblock %}
