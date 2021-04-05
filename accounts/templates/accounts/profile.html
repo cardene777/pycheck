@@ -13,7 +13,7 @@
     </div>
     <div class="container">
         <h1>ユーザー名：{{ username }}</h1>
-        {% if len(user_datas) == 0 %}
+        {% if message == No %}
             <h1>平均正答率：{{ average_current }}</h1>
             {% for user_data in user_datas %}
                 <ul>
