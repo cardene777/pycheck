@@ -73,10 +73,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+   'default': {
+       'ENGINE': 'django.db.backends.postgresql_psycopg2',
+       'NAME': 'pycheck',
+       'USER': 'pycheck',
+       'PASSWORD': 'pycheck61412',
+       'HOST': 'localhost',
+       'PORT': '',
+   }
 }
 
 # Password validation
@@ -124,11 +128,6 @@ LOGOUT_REDIRECT_URL = 'skill:home'  # ログアウト後のリダイレクト先
 # デプロイ設定
 DEBUG = False
 
-try:
-    from .local_settings import *
-except ImportError:
-    pass
-
 # ローカル用設定
 if DEBUG:
     ALLOWED_HOSTS = ['*']
@@ -147,37 +146,3 @@ if not DEBUG:
 
     STATIC_ROOT = '/usr/share/nginx/html/static'
     MEDIA_ROOT = '/usr/share/nginx/html/media/'
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'standard': {
-            'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
-            'datefmt': "%d/%b/%Y %H:%M:%S"
-
-        },
-    },
-    'handlers': {
-        'file': {
-            'class': 'logging.handlers.TimedRotatingFileHandler',
-            'filename': '/var/log/narito.ninja.log',
-            'formatter': 'standard',
-            'when': 'W0',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['file'],
-            'level': 'ERROR',
-        },
-        'skill': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
-        },
-        'accounts': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
-        },
-    },
-}

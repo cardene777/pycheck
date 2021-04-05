@@ -46,6 +46,7 @@ class Image(models.Model):
         max_length=100,
         default="admin"
     )
+
     image = models.ImageField(
         verbose_name="画像",
         upload_to='',
@@ -53,4 +54,4 @@ class Image(models.Model):
     )
 
     def __str__(self):
-        return self.image
+        return str(self.username)

@@ -37,7 +37,6 @@ def ocr(image_path):
         if text != "":
             new_texts.append(text)
 
-    print(new_texts)
     username = new_texts[0]
     try:
         question_number = new_texts[new_texts.index("受験結果問題") + 2].split(":")[0]
@@ -58,9 +57,9 @@ def ocr(image_path):
 def upload(request, username):
     if request.method == "POST":
         # form = ImageForm(request.POST, request.FILES)
-        print(f"file: {request.FILES['file']}")
-        print(username)
-        print(request.FILES["file"])
+        # print(f"file: {request.FILES['file']}")
+        # print(username)
+        # print(request.FILES["file"])
         image = Image()
         image.image = request.FILES['file']
         image.username = username
