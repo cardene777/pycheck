@@ -20,7 +20,7 @@ def ocr(image_path):
     image_path = str(image_path).replace(" ", "_")
     # 使用する画像を指定してOCRを実行
     txt = tool.image_to_string(
-        Image.open(f"/usr/share/nginx/html/media/images/{str(image_path)}"),
+        Image.open(f"/usr/share/nginx/html/media/{str(image_path)}"),
         lang="jpn",
         builder=pyocr.builders.TextBuilder()
     )
