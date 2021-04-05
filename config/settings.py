@@ -146,7 +146,7 @@ if not DEBUG:
            'ENGINE': 'django.db.backends.postgresql_psycopg2',
            'NAME': 'pycheck',
            'USER': 'pycheck',
-           'PASSWORD': 'pycheck6329'
+           'PASSWORD': 'pycheck6329',
            'HOST': 'localhost',
            'PORT': '',
        }
