@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<form action="" method="POST">
-{% csrf_token %}
-<button type="submit">ログアウト</button>
-</form>
+    <div class="container">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <button type="submit">ログアウト</button>
+        </form>
+    </div>
 </body>
 </html>
