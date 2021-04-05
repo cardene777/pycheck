@@ -20,7 +20,7 @@ def ocr(image_path):
     image_path = str(image_path).replace(" ", "_")
     # 使用する画像を指定してOCRを実行
     txt = tool.image_to_string(
-        Image.open(f"media/images/{str(image_path)}"),
+        Image.open(f"/usr/share/nginx/html/media/images/{str(image_path)}"),
         lang="jpn",
         builder=pyocr.builders.TextBuilder()
     )
@@ -65,7 +65,7 @@ def upload(request, username):
         image.image = request.FILES['file']
         image.username = username
         image.save()
-        username, question_number, question_level, answer_time, score = ocr(request.FILES.get("file"))
+        username, question_number, question_level, answer_time, score = ocr(request.FILES["file"])
         data_list = SkillCheckData.objects.filter(username=username).values_list("question_number", flat=True)
         if question_number not in data_list:
             data = SkillCheckData(username=username, question_number=question_number, question_level=question_level,
