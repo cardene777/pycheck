@@ -147,7 +147,7 @@ if DEBUG:
 
 if not DEBUG:
     SECRET_KEY = "ol*sk+=(_sy#r#ymu+-#sxpqx85kg$yxz_x71vj^*uai%un4aa"
-    ALLOWED_HOSTS = ["127.0.0.1", "45.77.179.208"]
+    ALLOWED_HOSTS = ["127.0.0.1", "localhost", "66.42.39.75"]
 
     STATIC_ROOT = '/usr/share/nginx/html/static'
     MEDIA_ROOT = '/usr/share/nginx/html/media/'
