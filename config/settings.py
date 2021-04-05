@@ -72,6 +72,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -117,11 +118,6 @@ LOGOUT_REDIRECT_URL = 'skill:home'  # ログアウト後のリダイレクト先
 # デプロイ設定
 DEBUG = False
 
-try:
-    from .local_settings import *
-except ImportError:
-    pass
-
 # ローカル用設定
 if DEBUG:
     ALLOWED_HOSTS = ['*']
@@ -140,15 +136,3 @@ if not DEBUG:
 
     STATIC_ROOT = '/usr/share/nginx/html/static'
     MEDIA_ROOT = '/usr/share/nginx/html/media/'
-    
-    DATABASES = {
-       'default': {
-           'ENGINE': 'django.db.backends.postgresql_psycopg2',
-           'NAME': 'pycheck',
-           'USER': 'pycheck',
-           'PASSWORD': 'pycheck6329',
-           'HOST': 'localhost',
-           'PORT': '',
-       }
-    }
-
