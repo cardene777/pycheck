@@ -72,16 +72,6 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.postgresql_psycopg2',
-       'NAME': 'pycheck',
-       'USER': 'pycheck',
-       'PASSWORD': 'pycheck61412',
-       'HOST': 'localhost',
-       'PORT': '',
-   }
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -133,7 +123,7 @@ if DEBUG:
     ALLOWED_HOSTS = ['*']
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+    
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -142,7 +132,7 @@ if DEBUG:
     }
 
 if not DEBUG:
-    ALLOWED_HOSTS = ["127.0.0.1", "localhost", "66.42.39.75"]
+    ALLOWED_HOSTS = ["127.0.0.1", "localhost", "207.148.92.245"]
 
     STATIC_ROOT = '/usr/share/nginx/html/static'
     MEDIA_ROOT = '/usr/share/nginx/html/media/'
