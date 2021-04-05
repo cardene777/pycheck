@@ -72,13 +72,6 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -134,43 +127,28 @@ if DEBUG:
     ALLOWED_HOSTS = ['*']
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 if not DEBUG:
     ALLOWED_HOSTS = ["127.0.0.1", "localhost", "108.61.187.135"]
 
     STATIC_ROOT = '/usr/share/nginx/html/static'
     MEDIA_ROOT = '/usr/share/nginx/html/media/'
-
-    LOGGING = {
-        'version': 1,
-        'disable_existing_loggers': False,
-        'formatters': {
-            'standard': {
-                'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
-                'datefmt': "%d/%b/%Y %H:%M:%S"
-
-            },
-        },
-        'handlers': {
-            'file': {
-                'class': 'logging.handlers.TimedRotatingFileHandler',
-                'filename': '/var/log/narito.ninja.log',
-                'formatter': 'standard',
-                'when': 'W0',
-            },
-        },
-        'loggers': {
-            'django': {
-                'handlers': ['file'],
-                'level': 'ERROR',
-            },
-            'skill': {
-                'handlers': ['file'],
-                'level': 'DEBUG',
-            },
-            'accounts': {
-                'handlers': ['file'],
-                'level': 'DEBUG',
-            },
-        },
+    
+    DATABASES = {
+       'default': {
+           'ENGINE': 'django.db.backends.postgresql_psycopg2',
+           'NAME': 'pycheck',
+           'USER': 'pycheck',
+           'PASSWORD': 'pycheck6329'
+           'HOST': 'localhost',
+           'PORT': '',
+       }
     }
+
