@@ -122,7 +122,7 @@ LOGIN_REDIRECT_URL = 'skill:home'  # ログイン後のリダイレクト先
 LOGOUT_REDIRECT_URL = 'skill:home'  # ログアウト後のリダイレクト先
 
 # デプロイ設定
-DEBUG = True
+DEBUG = False
 
 try:
     from .local_settings import *
