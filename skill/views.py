@@ -17,10 +17,11 @@ def ocr(image_path):
     tool = tools[0]
 
     # 画像パスの変換
-    image_path = str(image_path).replace(" ", "_")
+    # image_path = str(image_path).replace(" ", "_")
     # 使用する画像を指定してOCRを実行
     txt = tool.image_to_string(
-        Image.open(f"/usr/share/nginx/html/media/{str(image_path)}"),
+        # Image.open(f"/usr/share/nginx/html/media/{str(image_path)}"),
+        Image.open(f"/Users/akira/Desktop/local/develop/pycheck/media/{str(image_path)}"),
         lang="jpn",
         builder=pyocr.builders.TextBuilder()
     )
@@ -38,6 +39,7 @@ def ocr(image_path):
             new_texts.append(text)
 
     username = new_texts[0]
+    print(new_texts)
     try:
         question_number = new_texts[new_texts.index("受験結果問題") + 2].split(":")[0]
     except ValueError:
@@ -48,10 +50,12 @@ def ocr(image_path):
         question_level = new_texts[new_texts.index("受験結果") + 2].split(":")[0][0]
     answer_time = new_texts[new_texts.index("解答時間:") + 1]
     try:
-        score = new_texts[new_texts.index("スコァ:") + 1].split("点")[0]
+        score = new_texts[new_texts.index("スコア:") + 1].split("点")[0]
     except ValueError:
+        score = new_texts[new_texts.index("スコァ:") + 1].split("点")[0]
+    except:
         score = new_texts[new_texts.index("スコアァ:") + 1].split("点")[0]
-    return username, question_number, question_level, answer_time, score
+    return username, question_number, question_level, answer_time, str(score)
 
 
 def upload(request, username):
@@ -64,12 +68,24 @@ def upload(request, username):
         image.image = request.FILES['file']
         image.username = username
         image.save()
-        username, question_number, question_level, answer_time, score = ocr(request.FILES["file"])
+        file_name = Image.objects.values_list("image", flat=True).last()
+        print(file_name)
+        username, question_number, question_level, answer_time, score = ocr(file_name)
+        print(score)
+        print(type(score))
+        if score == "0" or score == 0 or score == "o" or score == "O":
+            print("###")
+            score = 0
+        print(score)
+        print(type(score))
         data_list = SkillCheckData.objects.filter(username=username).values_list("question_number", flat=True)
         if question_number not in data_list:
             data = SkillCheckData(username=username, question_number=question_number, question_level=question_level,
                                   answer_time=answer_time, score=score)
             data.save()
+        print(question_number)
+        print(score)
+        print(username)
         params = {
             "username": username,
             "question_number": question_number,
