@@ -72,6 +72,17 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+DATABASES = {
+       'default': {
+           'ENGINE': 'django.db.backends.postgresql_psycopg2',
+           'NAME': 'pycheck',
+           'USER': 'pycheck',
+           'PASSWORD': 'pycheck6329',
+           'HOST': 'localhost',
+           'PORT': '',
+       }
+    }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -132,7 +143,7 @@ if DEBUG:
     }
 
 if not DEBUG:
-    ALLOWED_HOSTS = ["pycheck.site", "207.148.92.245"]
+    ALLOWED_HOSTS = ["127.0.0.1", "localhost", "45.77.10.146"]
 
     STATIC_ROOT = '/usr/share/nginx/html/static'
     MEDIA_ROOT = '/usr/share/nginx/html/media/'
