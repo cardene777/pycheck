@@ -77,7 +77,7 @@ def upload(request, username):
             "answer_time": answer_time,
             "score": score,
         }
-    return render(request, 'skill/upload.html')
+    return render(request, 'skill/upload.html', {"usename": username})
 
 
 class UploadDone(generic.TemplateView):
