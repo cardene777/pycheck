@@ -52,9 +52,10 @@ def ocr(image_path):
     try:
         score = new_texts[new_texts.index("スコア:") + 1].split("点")[0]
     except ValueError:
-        score = new_texts[new_texts.index("スコァ:") + 1].split("点")[0]
-    except:
-        score = new_texts[new_texts.index("スコアァ:") + 1].split("点")[0]
+        try:
+            score = new_texts[new_texts.index("スコァ:") + 1].split("点")[0]
+        except ValueError:
+            score = new_texts[new_texts.index("スコアァ:") + 1].split("点")[0]
     return username, question_number, question_level, answer_time, str(score)
 
 
