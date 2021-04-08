@@ -5,24 +5,36 @@
 
 {% block content %}
     <div class="container">
-      <div class="bg-light p-3 p-sm-5 my-4 rounded">
-        <h1 class="display-4">Profile</h1>
-        <hr class="my-4">
-        <p>プロフィール</p>
-      </div>
+        <div class="bg-light p-3 p-sm-5 my-4 rounded">
+            <h1 class="display-4">Profile</h1>
+            <hr class="my-4">
+            <h4>{{ username }}</h4>
+            {% if message == No %}
+                <h4>平均正答率：{{ average_current }}</h4>
+            {% endif %}
+        </div>
     </div>
     <div class="container">
-        <h1>ユーザー名：{{ username }}</h1>
         {% if message == No %}
-            <h1>平均正答率：{{ average_current }}</h1>
-            {% for user_data in user_datas %}
-                <ul>
-                    <li>問題番号：{{ user_data.question_number }}</li>
-                    <li>問題レベル：{{ user_data.question_level }}</li>
-                    <li>回答時間：{{ user_data.answer_time }}</li>
-                    <li>点数：{{ user_data.score }}</li>
-                </ul>
-            {% endfor %}
+            <div class="container">
+                <div class="row">
+                    {% for user_data in user_datas %}
+                    <div class="col-3" style="margin-bottom: 2rem">
+                        <div class="card text-white bg-success">
+                            <div class="card-body">
+                                <h5 class="card-title">問題番号：{{ user_data.question_number }}</h5>
+                                <p class="card-text">問題レベル：{{ user_data.question_level }}</p>
+                                <p class="card-text">回答時間：{{ user_data.answer_time }}</p>
+                                <p class="card-text">点数：{{ user_data.score }}</p>
+                                <a href="https://paiza.jp/challenges/ranks/{{ user_data.question_level }}" target="_blank" class="btn btn-warning">
+                                    Go Paiza
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
         {% else %}
             <p>データがありません。</p>
         {% endif %}
