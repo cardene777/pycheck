@@ -149,3 +149,38 @@ if not DEBUG:
 
     STATIC_ROOT = '/usr/share/nginx/html/static'
     MEDIA_ROOT = '/usr/share/nginx/html/media/'
+
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'formatters': {
+            'production': {
+                'format': '%(asctime)s [%(levelname)s] %(process)d %(thread)d '
+                          '%(pathname)s:%(lineno)d %(message)s'
+            },
+        },
+        'handlers': {
+            'file': {
+                'class': 'logging.FileHandler',
+                'filename': 'pycheck.log',  # 環境に合わせて変更
+                'formatter': 'production',
+                'level': 'INFO',
+            },
+        },
+        'loggers': {
+            # 自作したログ出力
+            '': {
+                'handlers': ['file'],
+                'level': 'INFO',
+                'propagate': False,
+            },
+            # Djangoの警告・エラー
+            'django': {
+                'handlers': ['file'],
+                'level': 'INFO',
+                'propagate': False,
+            },
+        },
+    }
+
+
