@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import generic
 from .models import Image, SkillCheckData
+from gacha.models import Count
 
 
 class HomeView(generic.TemplateView):
@@ -18,14 +19,18 @@ def ocr(image_path):
     tool = tools[0]
 
     # 画像パスの変換
+<<<<<<< HEAD
     # from googletrans import Translatr
     # tr = Translator()
     # image_path = json.dumps(image_path, cls=DjangoJSONEncoder)
     # image_path = tr.translate(text=image_path, src="ja", dest="en").text
+=======
+>>>>>>> 4de6254cd8bcfbdad197733a9fb3bb09ab14fa82
     # image_path = str(image_path).replace(" ", "_")
     # 使用する画像を指定してOCRを実行
     txt = tool.image_to_string(
-        Image.open(f"/usr/share/nginx/html/media/{str(image_path)}"),
+        # Image.open(f"/usr/share/nginx/html/media/{str(image_path)}"),
+        Image.open(f"/Users/akira/Desktop/local/develop/pycheck/media/{str(image_path)}"),
         lang="jpn",
         builder=pyocr.builders.TextBuilder()
     )
@@ -43,6 +48,7 @@ def ocr(image_path):
             new_texts.append(text)
 
     username = new_texts[0]
+    print(new_texts)
     try:
         question_number = new_texts[new_texts.index("受験結果問題") + 2].split(":")[0]
     except ValueError:
@@ -73,15 +79,38 @@ def upload(request, username):
         image.username = username
         image.save()
         file_name = Image.objects.values_list("image", flat=True).last()
+<<<<<<< HEAD
         username, question_number, question_level, answer_time, score = ocr(file_name)
         if score == "0" or score == 0 or score == "o" or score == "O":
             print("###")
             score = 0
+=======
+        print(file_name)
+        username, question_number, question_level, answer_time, score = ocr(file_name)
+        print(score)
+        print(type(score))
+        if score == "0" or score == 0 or score == "o" or score == "O":
+            print("###")
+            score = 0
+        print(score)
+        print(type(score))
+>>>>>>> 4de6254cd8bcfbdad197733a9fb3bb09ab14fa82
         data_list = SkillCheckData.objects.filter(username=username).values_list("question_number", flat=True)
         if question_number not in data_list:
             data = SkillCheckData(username=username, question_number=question_number, question_level=question_level,
                                   answer_time=answer_time, score=score)
             data.save()
+
+        try:
+            user_count = Count.objects.get(username=username)
+            user_count.counter += 1
+            user_count.save()
+        except:
+            user_count = Count(username=username, counter=1)
+            user_count.save()
+        print(question_number)
+        print(score)
+        print(username)
         params = {
             "username": username,
             "question_number": question_number,
@@ -90,6 +119,10 @@ def upload(request, username):
             "score": score,
         }
     return render(request, 'skill/upload.html', {"usename": username})
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4de6254cd8bcfbdad197733a9fb3bb09ab14fa82
 
 class UploadDone(generic.TemplateView):
     template_name = "skill/upload_done.html"

@@ -42,6 +42,7 @@ def translate(instance, filename):
     translate_file = tr.translate(text=filename, src="ja", dest="en").text
     return translate_file
 
+
 class Image(models.Model):
     class Meta:
         verbose_name = "画像"
@@ -61,3 +62,5 @@ class Image(models.Model):
 
     def __str__(self):
         return str(self.username)
+
+

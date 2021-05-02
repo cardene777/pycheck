@@ -8,6 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('skill/', include('skill.urls')),
+    path('gacha/', include('gacha.urls')),
 ]
 
 if settings.DEBUG:
