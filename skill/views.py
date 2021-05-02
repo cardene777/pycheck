@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import generic
 from .models import Image, SkillCheckData
+from gacha.models import Count
 
 
 class HomeView(generic.TemplateView):
@@ -84,6 +85,14 @@ def upload(request, username):
             data = SkillCheckData(username=username, question_number=question_number, question_level=question_level,
                                   answer_time=answer_time, score=score)
             data.save()
+
+        try:
+            user_count = Count.objects.get(username=username)
+            user_count.counter += 1
+            user_count.save()
+        except:
+            user_count = Count(username=username, counter=1)
+            user_count.save()
         print(question_number)
         print(score)
         print(username)
