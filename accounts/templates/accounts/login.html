@@ -7,9 +7,6 @@
 </head>
 <body>
     <div class="container">
-        <p>ユーザー名はpaizaのユーザー名と同じにしてください。</p>
-        <p>パスワードはユーザー名を２回続けてください。</p>
-        <p>例）ユーザー名：paiza, パスワード：paizapaiza</p>
         <form action="" method="POST">
             {% csrf_token %}
             {{ form.as_p }}

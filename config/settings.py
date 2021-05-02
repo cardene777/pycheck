@@ -128,22 +128,29 @@ LOGOUT_REDIRECT_URL = 'skill:home'  # ログアウト後のリダイレクト先
 
 # デプロイ設定
 DEBUG = False
+# DEBUG = True
 
 # ローカル用設定
 if DEBUG:
     ALLOWED_HOSTS = ['*']
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
     
+    STATIC_ROOT = '/usr/share/nginx/html/static'
+    MEDIA_ROOT = '/usr/share/nginx/html/media/'
+
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+       'default': {
+           'ENGINE': 'django.db.backends.postgresql_psycopg2',
+           'NAME': 'pycheck',
+           'USER': 'pycheck',
+           'PASSWORD': 'pycheck6329',
+           'HOST': 'localhost',
+           'PORT': '',
+       }
     }
 
 if not DEBUG:
-    ALLOWED_HOSTS = ["127.0.0.1", "localhost", "45.77.10.146"]
+    ALLOWED_HOSTS = ["pycheck.site", "45.77.10.146"]
 
     STATIC_ROOT = '/usr/share/nginx/html/static'
     MEDIA_ROOT = '/usr/share/nginx/html/media/'

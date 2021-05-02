@@ -36,6 +36,12 @@ class SkillCheckData(models.Model):
                f"{self.answer_time} {self.score}"
 
 
+def translate(instance, filename):
+    from googletrans import Translator
+    tr = Translator()
+    translate_file = tr.translate(text=filename, src="ja", dest="en").text
+    return translate_file
+
 class Image(models.Model):
     class Meta:
         verbose_name = "画像"
@@ -49,7 +55,7 @@ class Image(models.Model):
 
     image = models.ImageField(
         verbose_name="画像",
-        upload_to='',
+        upload_to=translate,
         default="paiza.png"
     )
 

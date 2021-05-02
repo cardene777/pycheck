@@ -11,13 +11,18 @@ def ocr(image_path):
     from PIL import Image
     import pyocr
     import re
+    # from django.core.serializers.json import DjangoJSONEncoder
 
     # OCR エンジン取得
     tools = pyocr.get_available_tools()
     tool = tools[0]
 
     # 画像パスの変換
-    image_path = str(image_path).replace(" ", "_")
+    # from googletrans import Translatr
+    # tr = Translator()
+    # image_path = json.dumps(image_path, cls=DjangoJSONEncoder)
+    # image_path = tr.translate(text=image_path, src="ja", dest="en").text
+    # image_path = str(image_path).replace(" ", "_")
     # 使用する画像を指定してOCRを実行
     txt = tool.image_to_string(
         Image.open(f"/usr/share/nginx/html/media/{str(image_path)}"),
@@ -48,9 +53,12 @@ def ocr(image_path):
         question_level = new_texts[new_texts.index("受験結果") + 2].split(":")[0][0]
     answer_time = new_texts[new_texts.index("解答時間:") + 1]
     try:
-        score = new_texts[new_texts.index("スコァ:") + 1].split("点")[0]
+        score = new_texts[new_texts.index("スコア:") + 1].split("点")[0]
     except ValueError:
-        score = new_texts[new_texts.index("スコアァ:") + 1].split("点")[0]
+        try:
+            score = new_texts[new_texts.index("スコァ:") + 1].split("点")[0]
+        except ValueError:
+            score = new_texts[new_texts.index("スコアァ:") + 1].split("点")[0]
     return username, question_number, question_level, answer_time, score
 
 
@@ -64,7 +72,11 @@ def upload(request, username):
         image.image = request.FILES['file']
         image.username = username
         image.save()
-        username, question_number, question_level, answer_time, score = ocr(request.FILES["file"])
+        file_name = Image.objects.values_list("image", flat=True).last()
+        username, question_number, question_level, answer_time, score = ocr(file_name)
+        if score == "0" or score == 0 or score == "o" or score == "O":
+            print("###")
+            score = 0
         data_list = SkillCheckData.objects.filter(username=username).values_list("question_number", flat=True)
         if question_number not in data_list:
             data = SkillCheckData(username=username, question_number=question_number, question_level=question_level,
@@ -77,8 +89,7 @@ def upload(request, username):
             "answer_time": answer_time,
             "score": score,
         }
-    return render(request, 'skill/upload.html')
-
+    return render(request, 'skill/upload.html', {"usename": username})
 
 class UploadDone(generic.TemplateView):
     template_name = "skill/upload_done.html"
