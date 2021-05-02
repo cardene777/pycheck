@@ -19,13 +19,10 @@ def ocr(image_path):
     tool = tools[0]
 
     # 画像パスの変換
-<<<<<<< HEAD
     # from googletrans import Translatr
     # tr = Translator()
     # image_path = json.dumps(image_path, cls=DjangoJSONEncoder)
     # image_path = tr.translate(text=image_path, src="ja", dest="en").text
-=======
->>>>>>> 4de6254cd8bcfbdad197733a9fb3bb09ab14fa82
     # image_path = str(image_path).replace(" ", "_")
     # 使用する画像を指定してOCRを実行
     txt = tool.image_to_string(
@@ -79,12 +76,10 @@ def upload(request, username):
         image.username = username
         image.save()
         file_name = Image.objects.values_list("image", flat=True).last()
-<<<<<<< HEAD
         username, question_number, question_level, answer_time, score = ocr(file_name)
         if score == "0" or score == 0 or score == "o" or score == "O":
             print("###")
             score = 0
-=======
         print(file_name)
         username, question_number, question_level, answer_time, score = ocr(file_name)
         print(score)
@@ -94,7 +89,6 @@ def upload(request, username):
             score = 0
         print(score)
         print(type(score))
->>>>>>> 4de6254cd8bcfbdad197733a9fb3bb09ab14fa82
         data_list = SkillCheckData.objects.filter(username=username).values_list("question_number", flat=True)
         if question_number not in data_list:
             data = SkillCheckData(username=username, question_number=question_number, question_level=question_level,
@@ -119,10 +113,7 @@ def upload(request, username):
             "score": score,
         }
     return render(request, 'skill/upload.html', {"usename": username})
-<<<<<<< HEAD
-=======
 
->>>>>>> 4de6254cd8bcfbdad197733a9fb3bb09ab14fa82
 
 class UploadDone(generic.TemplateView):
     template_name = "skill/upload_done.html"
