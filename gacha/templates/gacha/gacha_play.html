@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}gacha_detail{% endblock %}
+
+{% block content %}
+    <div class="container">
+      <div class="bg-light p-3 p-sm-5 my-4 rounded">
+        <h1 class="display-4">Gacha Detail</h1>
+        <hr class="my-4">
+        <p>ガチャ詳細</p>
+      </div>
+    </div>
+    {% if user.username %}
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                {% for gacha_item in gacha_items %}
+                    <div class="col-auto one-card">
+                        <div class="card" style="width: 20rem;">
+                            <img src="{{ gacha_item.image.url }}" class="gacha-title-img" alt="画像です。" height="auto" width="auto">
+                            <div class="card-body">
+                                <h4 class="card-title">{{ gacha_item.name }}</h4>
+                                <h4 class="card-title">レア度{{ gacha_item.name }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <div class="container">
+            <h3>ログインしてください！</h3>
+        </div>
+    {% endif %}
+{% endblock %}
