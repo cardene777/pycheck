@@ -130,7 +130,6 @@ LOGOUT_REDIRECT_URL = 'skill:home'  # ログアウト後のリダイレクト先
 # デプロイ設定
 # DEBUG = True
 DEBUG = False
-# DEBUG = True
 
 # ローカル用設定
 if DEBUG:

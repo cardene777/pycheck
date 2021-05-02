@@ -1,0 +1,65 @@
+2021-05-03 08:00:35,193 [ERROR] 14061 140326341412672 /home/pycheck/src/pycheck/pycheck/lib/python3.6/site-packages/django/utils/log.py:230 Internal Server Error: /skill/upload/heku/
+Traceback (most recent call last):
+  File "/home/pycheck/src/pycheck/pycheck/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/pycheck/src/pycheck/pycheck/lib/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pycheck/src/pycheck/skill/views.py", line 79, in upload
+    username, question_number, question_level, answer_time, score = ocr(file_name)
+  File "/home/pycheck/src/pycheck/skill/views.py", line 30, in ocr
+    Image.open(f"/Users/akira/Desktop/local/develop/pycheck/media/{str(image_path)}"),
+  File "/home/pycheck/src/pycheck/pycheck/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/akira/Desktop/local/develop/pycheck/media/Screen_Shot_2021-05-03_AT_8.00.29.png'
+2021-05-03 08:13:51,536 [WARNING] 14061 140326341412672 /home/pycheck/src/pycheck/pycheck/lib/python3.6/site-packages/django/utils/log.py:230 Not Found: /ecp/Current/exporttool/microsoft.exchange.ediscovery.exporttool.application
+2021-05-03 08:20:36,069 [ERROR] 14507 140578161735488 /home/pycheck/src/pycheck/pycheck/lib/python3.6/site-packages/django/utils/log.py:230 Internal Server Error: /skill/upload/heku/
+Traceback (most recent call last):
+  File "/home/pycheck/src/pycheck/pycheck/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/pycheck/src/pycheck/pycheck/lib/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pycheck/src/pycheck/skill/views.py", line 79, in upload
+    username, question_number, question_level, answer_time, score = ocr(file_name)
+  File "/home/pycheck/src/pycheck/skill/views.py", line 30, in ocr
+    Image.open(f"/Users/akira/Desktop/local/develop/pycheck/media/{str(image_path)}"),
+  File "/home/pycheck/src/pycheck/pycheck/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/akira/Desktop/local/develop/pycheck/media/Screen_Shot_2021-05-03_AT_8.20.30.png'
+2021-05-03 08:20:55,019 [ERROR] 14507 140578161735488 /home/pycheck/src/pycheck/pycheck/lib/python3.6/site-packages/django/utils/log.py:230 Internal Server Error: /skill/upload/heku/
+Traceback (most recent call last):
+  File "/home/pycheck/src/pycheck/pycheck/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/pycheck/src/pycheck/pycheck/lib/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pycheck/src/pycheck/skill/views.py", line 79, in upload
+    username, question_number, question_level, answer_time, score = ocr(file_name)
+  File "/home/pycheck/src/pycheck/skill/views.py", line 30, in ocr
+    Image.open(f"/Users/akira/Desktop/local/develop/pycheck/media/{str(image_path)}"),
+  File "/home/pycheck/src/pycheck/pycheck/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/akira/Desktop/local/develop/pycheck/media/Screen_Shot_2021-05-03_AT_8.20.48.png'
+2021-05-03 08:27:21,696 [ERROR] 14759 139648329430848 /home/pycheck/src/pycheck/pycheck/lib/python3.6/site-packages/django/utils/log.py:230 Internal Server Error: /skill/upload/heku/
+Traceback (most recent call last):
+  File "/home/pycheck/src/pycheck/pycheck/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/pycheck/src/pycheck/pycheck/lib/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pycheck/src/pycheck/skill/views.py", line 79, in upload
+    username, question_number, question_level, answer_time, score = ocr(file_name)
+  File "/home/pycheck/src/pycheck/skill/views.py", line 30, in ocr
+    Image.open(f"/Users/akira/Desktop/local/develop/pycheck/media/{str(image_path)}"),
+  File "/home/pycheck/src/pycheck/pycheck/lib/python3.6/site-packages/PIL/Image.py", line 2891, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/akira/Desktop/local/develop/pycheck/media/Screen_Shot_2021-05-03_AT_8.27.15.png'
+2021-05-03 08:30:59,272 [ERROR] 14878 139916376532800 /home/pycheck/src/pycheck/pycheck/lib/python3.6/site-packages/django/utils/log.py:230 Internal Server Error: /skill/upload/heku/
+Traceback (most recent call last):
+  File "/home/pycheck/src/pycheck/pycheck/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/pycheck/src/pycheck/pycheck/lib/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pycheck/src/pycheck/skill/views.py", line 79, in upload
+    username, question_number, question_level, answer_time, score = ocr(file_name)
+  File "/home/pycheck/src/pycheck/skill/views.py", line 48, in ocr
+    print(new_texts)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 10-15: ordinal not in range(256)
+2021-05-03 08:34:54,766 [WARNING] 14992 140205482846016 /home/pycheck/src/pycheck/pycheck/lib/python3.6/site-packages/django/utils/log.py:230 Not Found: /account/login

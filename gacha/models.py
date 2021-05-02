@@ -13,7 +13,7 @@ class GachaTitle(models.Model):
 
     image = models.ImageField(
         verbose_name="タイトル画像",
-        upload_to="images/",
+        upload_to="",
         default="paiza.png"
     )
 
@@ -53,7 +53,7 @@ class GachaItem(models.Model):
 
     image = models.ImageField(
         verbose_name="アイテム画像",
-        upload_to="images/",
+        upload_to="",
         default="paiza.png"
     )
 
