@@ -21,4 +21,4 @@ class MyGachaItemsAdmin(admin.ModelAdmin):
 admin.site.register(GachaTitle, GachaTitleDataAdmin)
 admin.site.register(GachaItem, GachaItemDataAdmin)
 admin.site.register(Count, CountDataAdmin)
-admin.site.register(Count, MyGachaItemsAdmin)
+admin.site.register(MyGachaItems, MyGachaItemsAdmin)
