@@ -78,3 +78,22 @@ class Count(models.Model):
 
     def __str__(self):
         return f"{str(self.username)} {self.counter}"
+
+
+class MyGachaItems(models.Model):
+    class Meta:
+        verbose_name = "取得ガチャアイテム"
+        verbose_name_plural = '取得ガチャアイテム'
+
+    username = models.CharField(
+        verbose_name="ユーザー名",
+        max_length=100,
+    )
+
+    item = models.CharField(
+        verbose_name="アイテム名",
+        default=None,
+    )
+
+    def __str__(self):
+        return f"{str(self.username)} {self.item}"
