@@ -63,3 +63,6 @@ Traceback (most recent call last):
     print(new_texts)
 UnicodeEncodeError: 'latin-1' codec can't encode characters in position 10-15: ordinal not in range(256)
 2021-05-03 08:34:54,766 [WARNING] 14992 140205482846016 /home/pycheck/src/pycheck/pycheck/lib/python3.6/site-packages/django/utils/log.py:230 Not Found: /account/login
+2021-05-03 08:44:10,921 [INFO] 28412 8644521472 /opt/anaconda3/envs/local/lib/python3.8/site-packages/django/utils/autoreload.py:613 Watching for file changes with StatReloader
+2021-05-03 08:59:12,402 [INFO] 28412 8644521472 /opt/anaconda3/envs/local/lib/python3.8/site-packages/django/utils/autoreload.py:236 /Users/akira/Desktop/local/develop/pycheck/gacha/urls.py changed, reloading.
+2021-05-03 08:59:12,761 [INFO] 28992 8681217536 /opt/anaconda3/envs/local/lib/python3.8/site-packages/django/utils/autoreload.py:613 Watching for file changes with StatReloader

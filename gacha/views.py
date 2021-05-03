@@ -4,10 +4,17 @@ from .models import GachaTitle, GachaItem, Count
 import random
 
 
-class Gacha(generic.ListView):
-    template_name = "gacha/gacha.html"
-    model = GachaTitle
-    context_object_name = "gacha_titles"
+def gacha(requests, username):
+    gacha_titles = GachaTitle.objects.all()
+    try:
+        user_count = Count.objects.get(username=username)
+    except:
+        user_count = "No"
+    params = {
+        "gacha_titles": gacha_titles,
+        "user_count": user_count,
+    }
+    return render(requests, "gacha/gacha.html", params)
 
 
 def gacha_detail(requests, username, gacha_title):

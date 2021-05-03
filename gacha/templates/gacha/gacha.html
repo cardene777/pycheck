@@ -13,6 +13,11 @@
     </div>
     {% if user.username %}
         <div class="container-fluid">
+            {% if user_count != "No" %}
+                <h3>{{ user_count }}回ガチャを回せます。</h3>
+            {% else %}
+                <h3>データ登録がありません。paizaのスキルチェック結果を登録してください。</h3>
+            {% endif %}
             <div class="row justify-content-center">
                 {% for gacha_title in gacha_titles %}
                     <div class="col-auto one-card">
