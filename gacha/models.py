@@ -92,6 +92,7 @@ class MyGachaItems(models.Model):
 
     item = models.CharField(
         verbose_name="アイテム名",
+        max_length=100,
         default=None,
     )
 
