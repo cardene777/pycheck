@@ -12,6 +12,7 @@
       </div>
     </div>
     {% if user.username and message == "NO" %}
+        <hr>
         <div class="container">
             {% if counter.counter > 0 %}
                 <h3 style="color: red; font-weight: bold">{{ counter.counter }}回ガチャを回せます。</h3>
@@ -30,15 +31,67 @@
                 <h3 style="font-weight: bold">スキルチェック結果を新たに登録することでガチャを回すことができます。</h3>
             {% endif %}
         </div>
-        <div class="container-fluid">
+        <div class="container">
+            <h2>VR</h2>
             <div class="row justify-content-center">
-                {% for gacha_item in gacha_items %}
+                {% for gacha_item_VR in gacha_items_VR %}
                     <div class="col-auto one-card" style="margin-bottom: 2rem">
                         <div class="card" style="width: 20rem;">
-                            <img src="{{ gacha_item.image.url }}" class="gacha-title-img" alt="画像です。" height="auto" width="auto">
+                            <img src="{{ gacha_item_VR.image.url }}" class="gacha-title-img" alt="画像です。" height="auto" width="auto">
                             <div class="card-body">
-                                <h4 class="card-title">アイテム名：{{ gacha_item.name }}</h4>
-                                <h4 class="card-title">レア度：{{ gacha_item.rare }}</h4>
+                                <h4 class="card-title">アイテム名：{{ gacha_item_VR.name }}</h4>
+                                <h4 class="card-title">レア度：{{ gacha_item_VR.rare }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <hr>
+        <div class="container">
+            <h2>SR</h2>
+            <div class="row justify-content-center">
+                {% for gacha_item_SR in gacha_items_SR %}
+                    <div class="col-auto one-card" style="margin-bottom: 2rem">
+                        <div class="card" style="width: 20rem;">
+                            <img src="{{ gacha_item_SR.image.url }}" class="gacha-title-img" alt="画像です。" height="auto" width="auto">
+                            <div class="card-body">
+                                <h4 class="card-title">アイテム名：{{ gacha_item_SR.name }}</h4>
+                                <h4 class="card-title">レア度：{{ gacha_item_SR.rare }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <hr>
+        <div class="container">
+            <h2>R</h2>
+            <div class="row justify-content-center">
+                {% for gacha_item_R in gacha_items_R %}
+                    <div class="col-auto one-card" style="margin-bottom: 2rem">
+                        <div class="card" style="width: 20rem;">
+                            <img src="{{ gacha_item_R.image.url }}" class="gacha-title-img" alt="画像です。" height="auto" width="auto">
+                            <div class="card-body">
+                                <h4 class="card-title">アイテム名：{{ gacha_item_R.name }}</h4>
+                                <h4 class="card-title">レア度：{{ gacha_item_R.rare }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <hr>
+        <div class="container">
+            <h2>N</h2>
+            <div class="row justify-content-center">
+                {% for gacha_item_N in gacha_items_N %}
+                    <div class="col-auto one-card" style="margin-bottom: 2rem">
+                        <div class="card" style="width: 20rem;">
+                            <img src="{{ gacha_item_N.image.url }}" class="gacha-title-img" alt="画像です。" height="auto" width="auto">
+                            <div class="card-body">
+                                <h4 class="card-title">アイテム名：{{ gacha_item_N.name }}</h4>
+                                <h4 class="card-title">レア度：{{ gacha_item_N.rare }}</h4>
                             </div>
                         </div>
                     </div>

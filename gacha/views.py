@@ -19,11 +19,18 @@ def gacha(requests, username):
 
 def gacha_detail(requests, username, gacha_title):
     message = "NO"
-    gacha_items = GachaItem.objects.filter(title__title=gacha_title)
+    # タイトルに紐づくガチャアイテム取得
+    gacha_items_VR = GachaItem.objects.filter(title__title=gacha_title, rare="VR")
+    gacha_items_SR = GachaItem.objects.filter(title__title=gacha_title, rare="SR")
+    gacha_items_R = GachaItem.objects.filter(title__title=gacha_title, rare="R")
+    gacha_items_N = GachaItem.objects.filter(title__title=gacha_title, rare="N")
     counter = Count.objects.get(username=username)
     params = {
         "message": message,
-        "gacha_items": gacha_items,
+        "gacha_items_VR": gacha_items_VR,
+        "gacha_items_SR": gacha_items_SR,
+        "gacha_items_R": gacha_items_R,
+        "gacha_items_N": gacha_items_N,
         "gacha_title": gacha_title,
         "counter": counter,
     }
