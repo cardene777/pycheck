@@ -17,6 +17,14 @@
     <div class="container">
         {% if message == No %}
             <div class="container">
+                <div class="btns">
+                    <p class="btn-content btns-btn">
+                        <a href="{% url 'gacha:gacha_item_list' user.username %}" class="btn" style="background-color: #77c7e2; color: #303f42;" tabindex="-1" role="button" aria-disabled="true">
+                            取得した画像を確認
+                            <i class="fas fa-sync-alt"></i>
+                        </a>
+                    </p>
+                </div>
                 <div class="row">
                     {% for user_data in user_datas %}
                     <div class="col-3" style="margin-bottom: 2rem">
