@@ -14,7 +14,7 @@
     {% if user.username %}
         <div class="container-fluid">
             {% if user_count != "No" %}
-                <h3>{{ user_count }}回ガチャを回せます。</h3>
+                <h3>{{ user_count.counter }}回ガチャを回せます。</h3>
             {% else %}
                 <h3>データ登録がありません。paizaのスキルチェック結果を登録してください。</h3>
             {% endif %}
