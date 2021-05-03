@@ -33,11 +33,11 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 {% for gacha_item in gacha_items %}
-                    <div class="col-auto one-card">
+                    <div class="col-auto one-card" style="margin-bottom: 2rem">
                         <div class="card" style="width: 20rem;">
                             <img src="{{ gacha_item.image.url }}" class="gacha-title-img" alt="画像です。" height="auto" width="auto">
                             <div class="card-body">
-                                <h4 class="card-title">{{ gacha_item.name }}</h4>
+                                <h4 class="card-title">アイテム名：{{ gacha_item.name }}</h4>
                                 <h4 class="card-title">レア度：{{ gacha_item.rare }}</h4>
                             </div>
                         </div>
