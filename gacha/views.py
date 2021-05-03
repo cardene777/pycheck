@@ -71,7 +71,7 @@ def gacha_play(requests, username, gacha_title):
 
 def gacha_item_list(requests, username):
     # 取得したガチャアイテムを全て取得
-    item_names = GachaItem.objects.filter(username=username)
+    item_names = MyGachaItems.objects.filter(username=username)
     gacha_items = []
     for item_name in item_names:
         gacha_item = GachaItem.objects.get(name=item_name.name)
