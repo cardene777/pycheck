@@ -74,7 +74,7 @@ def gacha_item_list(requests, username):
     item_names = MyGachaItems.objects.filter(username=username)
     gacha_items = []
     for item_name in item_names:
-        gacha_item = GachaItem.objects.get(name=item_name.name)
+        gacha_item = GachaItem.objects.get(name=item_name.item)
         gacha_items.append(gacha_item)
 
     params = {
