@@ -8,3 +8,4 @@ media/
 local_settings.py
 .env
 .idea/
+pycheck.log
