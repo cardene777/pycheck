@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class GachaTitle(models.Model):
@@ -74,6 +75,7 @@ class Count(models.Model):
     counter = models.IntegerField(
         verbose_name="ガチャカウント",
         default=0,
+        validators=[MinValueValidator(0), MaxValueValidator(10000)],
     )
 
     def __str__(self):
