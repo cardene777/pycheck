@@ -45,7 +45,7 @@ def gacha_play(requests, username, gacha_title):
 
     # カウンターを１減らす
     counter = Count.objects.get(username=username)
-    if counter <= 0:
+    if int(counter.counter) <= 0:
         message = "Error"
         params = {
             "message": message,
