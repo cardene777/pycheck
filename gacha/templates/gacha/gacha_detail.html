@@ -105,8 +105,9 @@
                 <h3 style="color: red; font-weight: bold">{{ counter.counter }}回ガチャを回せます。</h3>
                 <div class="btns">
                     <p class="btn-content btns-btn">
-                        <a href="{% url 'gacha:gacha_play' user.username gacha_title %}"  onclick='return confirm("本当に回しますか？");'
-                           class="btn" style="background-color: #77c7e2; color: #303f42;" tabindex="-1" role="button" aria-disabled="true">
+                        <a href="{% url 'gacha:gacha_play' user.username gacha_title %}"
+                           class="btn" onclick='return confirm("本当に回しますか？");'
+                           style="background-color: #77c7e2; color: #303f42;" tabindex="-1" role="button" aria-disabled="true">
                             もう一度回す
                             <i class="fas fa-sync-alt"></i>
                         </a>
