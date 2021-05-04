@@ -37,52 +37,57 @@ def gacha_detail(requests, username, gacha_title):
     return render(requests, "gacha/gacha_detail.html", params)
 
 
-def gacha_play(requests, username, gacha_title):
-    message = "OK"
+def gacha_play(requests, username, gacha_title, jadge=0):
+    if jadge == 1:
+        message = "OK"
 
-    # ガチャタイトルの名前修正
-    gacha_items = GachaItem.objects.filter(title__title=gacha_title.lower())
+        # ガチャタイトルの名前修正
+        gacha_items = GachaItem.objects.filter(title__title=gacha_title.lower())
 
-    # カウンターを１減らす
-    counter = Count.objects.get(username=username)
-    if int(counter.counter) <= 0:
-        message = "Error"
+        # カウンターを１減らす
+        counter = Count.objects.get(username=username)
+        if int(counter.counter) <= 0:
+            message = "Error"
+            params = {
+                "message": message,
+                "counter": counter,
+            }
+            return render(requests, "gacha/gacha_error.html", params)
+        counter.counter -= 1
+        counter.save()
+        counter = Count.objects.get(username=username)
+        # 確率設定
+        probability = []
+        rare_probability = {
+            "N": 0.4,
+            "R": 0.3,
+            "SR": 0.2,
+            "VR": 0.1
+        }
+        for gacha_item in gacha_items:
+            probability.append(rare_probability[gacha_item.rare])
+
+        # ランダムに１つ取得
+        random_item = random.choices(gacha_items, weights=probability, k=1)
+        gacha_random_item = GachaItem.objects.get(name=random_item[0].name)
+
+        # MyGachaItemsモデルにデータ登録
+        my_gach_item = MyGachaItems(username=username, item=gacha_random_item.name)
+        my_gach_item.save()
+
         params = {
             "message": message,
+            "item": gacha_random_item,
+            "gacha_title": gacha_title,
             "counter": counter,
         }
-        return render(requests, "gacha/gacha_error.html", params)
-    counter.counter -= 1
-    counter.save()
-    counter = Count.objects.get(username=username)
-    # 確率設定
-    probability = []
-    rare_probability = {
-        "N": 0.4,
-        "R": 0.3,
-        "SR": 0.2,
-        "VR": 0.1
-    }
-    for gacha_item in gacha_items:
-        probability.append(rare_probability[gacha_item.rare])
+        return render(requests, "gacha/gacha_detail.html", params)
 
-    # ランダムに１つ取得
-    random_item = random.choices(gacha_items, weights=probability, k=1)
-    gacha_random_item = GachaItem.objects.get(name=random_item[0].name)
-
-    # MyGachaItemsモデルにデータ登録
-    my_gach_item = MyGachaItems(username=username, item=gacha_random_item.name)
-    my_gach_item.save()
-
+    message = "jadge0"
     params = {
         "message": message,
-        "item": gacha_random_item,
-        "gacha_title": gacha_title,
-        "counter": counter,
     }
-    return render(requests, "gacha/gacha_detail.html", params)
-
-
+    return render(requests, "gacha/gacha_error.html.html", params)
 def gacha_item_list(requests, username):
     # 取得したガチャアイテムを全て取得
     item_names = MyGachaItems.objects.filter(username=username)

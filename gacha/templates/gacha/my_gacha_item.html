@@ -18,7 +18,8 @@
                     <div class="card" style="width: 20rem;">
                         <img src="{{ gacha_item.image.url }}" class="" alt="画像です。" height="300" width=100%>
                         <div class="card-body">
-                            <h4 class="card-title">アイテム名：{{ gacha_item.name }}</h4>
+                            <h4 class="card-title">アイテム名：<strong style="color: steelblue">{{ gacha_item.name }}</strong></h4>
+                            <h4 class="card-title">レア度：<strong>{{ gacha_item.rare }}</strong></h4>
                         </div>
                     </div>
                 </div>

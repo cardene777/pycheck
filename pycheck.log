@@ -66,3 +66,5 @@ UnicodeEncodeError: 'latin-1' codec can't encode characters in position 10-15: o
 2021-05-03 08:44:10,921 [INFO] 28412 8644521472 /opt/anaconda3/envs/local/lib/python3.8/site-packages/django/utils/autoreload.py:613 Watching for file changes with StatReloader
 2021-05-03 08:59:12,402 [INFO] 28412 8644521472 /opt/anaconda3/envs/local/lib/python3.8/site-packages/django/utils/autoreload.py:236 /Users/akira/Desktop/local/develop/pycheck/gacha/urls.py changed, reloading.
 2021-05-03 08:59:12,761 [INFO] 28992 8681217536 /opt/anaconda3/envs/local/lib/python3.8/site-packages/django/utils/autoreload.py:613 Watching for file changes with StatReloader
+2021-05-04 11:36:57,482 [INFO] 34077 8609779200 /opt/anaconda3/envs/local/lib/python3.8/site-packages/django/utils/autoreload.py:613 Watching for file changes with StatReloader
+2021-05-04 12:06:08,054 [INFO] 34495 8632487424 /opt/anaconda3/envs/local/lib/python3.8/site-packages/django/utils/autoreload.py:613 Watching for file changes with StatReloader

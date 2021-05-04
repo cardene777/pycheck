@@ -12,6 +12,9 @@
       </div>
     </div>
     <div class="container">
-        <h4>ガチャはもう引けません。</h4>
+        <h4>エラーです。</h4>
+    {% if message == "jadge0" %}
+        <p>リロードしましたね？リロードせずにもう一度やり直してください！</p>
+    {% endif %}
     </div>
 {% endblock %}
