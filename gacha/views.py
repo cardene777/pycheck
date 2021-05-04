@@ -59,7 +59,7 @@ def gacha_play(requests, username, gacha_title, jadge=0):
         # 確率設定
         probability = []
         rare_probability = {
-            "N": 1,
+            "N": 0.5,
             "R": 1,
             "SR": 1,
             "VR": 1
