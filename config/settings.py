@@ -31,12 +31,14 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'skill.apps.SkillConfig',
     'gacha.apps.GachaConfig',
+    'question.apps.QuestionConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -128,8 +130,8 @@ LOGIN_REDIRECT_URL = 'skill:home'  # ログイン後のリダイレクト先
 LOGOUT_REDIRECT_URL = 'skill:home'  # ログアウト後のリダイレクト先
 
 # デプロイ設定
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+# DEBUG = False
 
 # ローカル用設定
 if DEBUG:

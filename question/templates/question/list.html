@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" href="{% static 'question/css/list.css' %}">
+{% endblock header %}
+
+{% block content %}
+    <div class="container">
+        <div class="bg-light p-3 p-sm-5 my-4 rounded">
+            <h1 class="display-4">質問投稿サイト</h1>
+            <hr class="my-4">
+            <p>質問一覧</p>
+        </div>
+    </div>
+    <div class="container ">
+        <a href="{% url 'question:create' %}" class="btn btn-success btn-lg" tabindex="-1" role="button"
+           aria-disabled="true" style="margin-bottom: 2rem">
+            新規作成
+        </a>
+        <div class="container">
+            <div class="row">
+                {% for question in questions %}
+                    <div class="col-4 card" style="width: 18rem;">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ question.title }}</h5>
+                            <p class="card-text">作成日: {{ question.title }}</p>
+                            <a href="{% url 'question:detail' question.pk %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">詳細</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
