@@ -6,9 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
-        {% block head %}
-
-        {% endblock %}
+        {% block head %}{% endblock %}
         <!-- Font Awesome -->
         <script src="https://kit.fontawesome.com/e7484f657a.js" crossorigin="anonymous"></script>
 
@@ -32,23 +30,26 @@
                         </li>
                         {% if user.is_authenticated %}
                             <li class="nav-item active">
-                                <a class="nav-link" href="{% url 'accounts:logout' %}">LogOut</a>
+                                <a class="nav-link" href="{% url 'accounts:logout' %}"><strong>LogOut</strong></a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" href="{% url 'accounts:profile' username=user.username %}">{{ user.username }}</a>
+                                <a class="nav-link" href="{% url 'question:list' %}"><strong>質問</strong></a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" href="{% url 'gacha:gacha' user.username %}">ガチャ</a>
+                                <a class="nav-link" href="{% url 'accounts:profile' username=user.username %}"><strong>{{ user.username }}</strong></a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" href="{% url 'gacha:gacha_item_list' user.username %}">ガチャアイテム</a>
+                                <a class="nav-link" href="{% url 'gacha:gacha' user.username %}"><strong>ガチャ</strong></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{% url 'gacha:gacha_item_list' user.username %}"><strong>ガチャアイテム</strong></a>
                             </li>
                         {% else %}
                             <li class="nav-item active">
-                                <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
+                                <a class="nav-link" href="{% url 'accounts:login' %}"><strong>Login</strong></a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" href="{% url 'accounts:signup' %}">SignUp</a>
+                                <a class="nav-link" href="{% url 'accounts:signup' %}"><strong>SignUp</strong></a>
                             </li>
                         {% endif %}
                     </ul>

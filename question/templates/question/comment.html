@@ -1,0 +1,34 @@
+
+<div>
+    <div class="list-group container">
+        <h3>コメント</h3>
+
+        {% for comment in comments%}
+            <a class="list-group-item list-group-item-action p-3 rounded-0">
+            <p class="m-0"><small>{{comment.comment}}</small></p>
+            <p class="m-0"><small>{{comment.created_at}}</small></p>
+            </a>
+        {% endfor %}
+    </div>
+
+    <div class="container">
+        {% if user.is_authenticated %}
+            <form method="POST" class="my-4">
+                {% csrf_token %}
+                <div class="md-2">
+                    <label>コメント投稿</label>
+                    <textarea name="comment" class="rounded-0 bg-light form-control"></textarea>
+                </div>
+                <div class="text-right" style="margin-top: 2rem">
+                    <button class="btn btn-sm btn-outline-success" type="submit">
+                        コメントする
+                    </button>
+                </div>
+            </form>
+        {% else %}
+            <p class="my-4">
+                コメントを投稿するには<a href="{% url 'accounts:signup' %}">ログイン</a>してください。
+            </p>
+        {% endif %}
+    </div>
+</div>
