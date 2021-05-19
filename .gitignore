@@ -1,4 +1,4 @@
-db.sqlite3/
+db.sqlite3
 __pycache__/
 __pycache__2/
 *.pyc
@@ -8,3 +8,6 @@ media/
 local_settings.py
 .env
 .idea/
+pycheck.log
+migrations/
+logsdjango.log
