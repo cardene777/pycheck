@@ -1,9 +1,14 @@
-<!doctype html>
-<html lang="en">
+{% load static %}
+<html lang="ja">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% block head %}{% endblock %}
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/e7484f657a.js" crossorigin="anonymous"></script>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
@@ -11,7 +16,7 @@
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
-  {% block content %}{% endblock %}
+    {% block content %}{% endblock %}
 
     <!-- Optional JavaScript; choose one of the two! -->
 
