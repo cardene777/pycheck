@@ -87,7 +87,9 @@ def gacha_play(requests, username, gacha_title, jadge=0):
     params = {
         "message": message,
     }
-    return render(requests, "gacha/gacha_error.html.html", params)
+    return render(requests, "gacha/gacha_error.html", params)
+
+
 def gacha_item_list(requests, username):
     # 取得したガチャアイテムを全て取得
     item_names = MyGachaItems.objects.filter(username=username)
