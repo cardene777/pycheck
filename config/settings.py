@@ -19,11 +19,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
+DEBUG = False
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "ol*sk+=(_sy#r#ymu+-#sxpqx85kg$yxz_x71vj^*uai%un4aa"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -31,7 +33,6 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'skill.apps.SkillConfig',
     'gacha.apps.GachaConfig',
-    'question.apps.QuestionConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -76,16 +77,15 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-       'default': {
-           'ENGINE': 'django.db.backends.postgresql_psycopg2',
-           'NAME': 'pycheck',
-           'USER': 'pycheck',
-           'PASSWORD': 'pycheck6329',
-           'HOST': 'localhost',
-           'PORT': '',
-       }
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "pycheck",
+        "USER": "pycheck",
+        "PASSWORD": "",
+        "host": "host",
+        "PORT": "",
     }
-
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -124,22 +124,17 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 LOGIN_URL = 'accounts:login'  # ログインしていないときのリダイレクト先
 LOGIN_REDIRECT_URL = 'skill:home'  # ログイン後のリダイレクト先
 LOGOUT_REDIRECT_URL = 'skill:home'  # ログアウト後のリダイレクト先
 
-# デプロイ設定
-# DEBUG = True
-DEBUG = False
+# デバッグ設定
+DEBUG = True
 
 # ローカル用設定
 if DEBUG:
-    ALLOWED_HOSTS = ['*']
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    
-    MEDIA_ROOT = 'media/images/'
-
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -148,10 +143,16 @@ if DEBUG:
     }
 
 if not DEBUG:
-    ALLOWED_HOSTS = ["pycheck.site", "45.77.10.146"]
-
-    STATIC_ROOT = '/usr/share/nginx/html/static'
-    MEDIA_ROOT = '/usr/share/nginx/html/media/'
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'pycheck',
+            'USER': 'pycheck',
+            'PASSWORD': 'pycheck6329',
+            'HOST': 'localhost',
+            'PORT': '',
+        }
+    }
 
     LOGGING = {
         'version': 1,
