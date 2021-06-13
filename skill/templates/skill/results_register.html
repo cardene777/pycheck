@@ -7,19 +7,19 @@
     <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
 {% endblock %}
 
-{% block title %}upload{% endblock %}
+{% block title %}results_register{% endblock %}
 
 {% block content %}
     <div class="container">
       <div class="bg-light p-3 p-sm-5 my-4 rounded">
-        <h1 class="display-4">Upload</h1>
+        <h1 class="display-4">Results Register</h1>
         <hr class="my-4">
-        <p>画像アップロード</p>
+        <p>成績アップロード</p>
       </div>
     </div>
     <div class="container">
         <h1>Please Upload</h1>
-        <form class="dropzone dz" action="{% url 'skill:upload' %}" method="post">
+        <form class="dropzone dz" action="{% url 'skill:results_register' %}" method="post">
             {% csrf_token %}
             <div class="fallback">
                 <input type="file" name="file" accept="image/*" id="id_image" multiple>

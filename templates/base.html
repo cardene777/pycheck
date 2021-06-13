@@ -32,9 +32,6 @@
                                 <a class="nav-link" href="{% url 'accounts:logout' %}"><strong>LogOut</strong></a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" href="{% url 'question:list' %}"><strong>質問</strong></a>
-                            </li>
-                            <li class="nav-item active">
                                 <a class="nav-link" href="{% url 'accounts:profile' username=user.username %}"><strong>{{ user.username }}</strong></a>
                             </li>
                             <li class="nav-item active">
@@ -42,6 +39,9 @@
                             </li>
                             <li class="nav-item active">
                                 <a class="nav-link" href="{% url 'gacha:gacha_item_list' user.username %}"><strong>ガチャアイテム</strong></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{% url 'skill:results_register' %}"><strong>成績登録</strong></a>
                             </li>
                         {% else %}
                             <li class="nav-item active">
