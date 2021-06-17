@@ -6,3 +6,5 @@ pyocr==0.8
 googletrans==4.0.0-rc1
 django-crispy-forms==1.11.2
 pykakasi
+django-heroku
+dj-database-url
