@@ -14,7 +14,6 @@ class HomeView(generic.TemplateView):
 def ocr(image_path):
     # from django.core.serializers.json import DjangoJSONEncoder
     from PIL import Image
-
     # OCR エンジン取得
     tools = pyocr.get_available_tools()
     tool = tools[0]
@@ -27,7 +26,8 @@ def ocr(image_path):
     # image_path = str(image_path).replace(" ", "_")
     # 使用する画像を指定してOCRを実行
     txt = tool.image_to_string(
-        Image.open(f"/Users/akira/Desktop/local/develop/pycheck/media/{str(image_path)}"),
+        # Image.open(f"/Users/akira/Desktop/local/develop/pycheck/media/{str(image_path)}"),
+        Image.open(image_path),
         lang="jpn",
         builder=pyocr.builders.TextBuilder()
     )
@@ -135,7 +135,7 @@ def upload(request):
         file = request.FILES["file"]
         image = Image(username=username, image=file)
         image.save()
-        file_name = Image.objects.values_list("image", flat=True).last()
+        file_name = Image.objects.last().image
         username, question_number, question_level, answer_time, score = ocr(file_name)
         if score == "0" or score == 0 or score == "o" or score == "O":
             score = 0
