@@ -63,7 +63,7 @@ def translate(instance, filename):
     kakasi.setMode('J', 'a')
     conv = kakasi.getConverter()
     save_path = f"/images/{conv.do(filename)}"
-    return conv.do(filename)
+    return f"images/{conv.do(filename)}"
 
 
 class Image(models.Model):
