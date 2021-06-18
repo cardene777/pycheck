@@ -6,6 +6,11 @@ from gacha.models import Count
 import pyocr
 import re
 
+import logging
+
+logger = logging.getLogger('skill')
+logger.info("log info test!")
+
 
 class HomeView(generic.TemplateView):
     template_name = "skill/home.html"
