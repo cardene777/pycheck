@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = False
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = "ol*sk+=(_sy#r#ymu+-#sxpqx85kg$yxz_x71vj^*uai%un4aa"
+SECRET_KEY = "ol*sk+=(_sy#r#ymu+-#sxpqx85kg$yxz_x71vj^*uai%un4aa"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 ALLOWED_HOSTS = ["pycheck.herokuapp.com"]
@@ -83,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'pycheck',
         'USER': 'pycheck',
-        'PASSWORD': 'pycheck6329',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -126,17 +126,18 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+# MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 LOGIN_URL = 'accounts:login'  # ログインしていないときのリダイレクト先
 LOGIN_REDIRECT_URL = 'skill:home'  # ログイン後のリダイレクト先
 LOGOUT_REDIRECT_URL = 'skill:home'  # ログアウト後のリダイレクト先
 
 # デバッグ設定
-# DEBUG = True
+DEBUG = True
 
 # ローカル用設定
 if DEBUG:
+    ALLOWED_HOSTS = ["*"]
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
