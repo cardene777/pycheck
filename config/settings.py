@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ DEBUG = False
 SECRET_KEY = "ol*sk+=(_sy#r#ymu+-#sxpqx85kg$yxz_x71vj^*uai%un4aa"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["pycheck.herokuapp.com"]
 
 # Application definition
 
@@ -78,13 +79,13 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "pycheck",
-        "USER": "pycheck",
-        "PASSWORD": "",
-        "host": "host",
-        "PORT": "",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'pycheck',
+        'USER': 'pycheck',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -125,17 +126,18 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+# MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 LOGIN_URL = 'accounts:login'  # ログインしていないときのリダイレクト先
 LOGIN_REDIRECT_URL = 'skill:home'  # ログイン後のリダイレクト先
 LOGOUT_REDIRECT_URL = 'skill:home'  # ログアウト後のリダイレクト先
 
 # デバッグ設定
-# DEBUG = True
+DEBUG = True
 
 # ローカル用設定
 if DEBUG:
+    ALLOWED_HOSTS = ["*"]
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -144,48 +146,10 @@ if DEBUG:
     }
 
 if not DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'pycheck',
-            'USER': 'pycheck',
-            'PASSWORD': 'pycheck6329',
-            'HOST': 'localhost',
-            'PORT': '',
-        }
-    }
+    import dj_database_url
 
-    LOGGING = {
-        'version': 1,
-        'disable_existing_loggers': False,
-        'formatters': {
-            'production': {
-                'format': '%(asctime)s [%(levelname)s] %(process)d %(thread)d '
-                          '%(pathname)s:%(lineno)d %(message)s'
-            },
-        },
-        'handlers': {
-            'file': {
-                'class': 'logging.FileHandler',
-                'filename': 'pycheck.log',  # 環境に合わせて変更
-                'formatter': 'production',
-                'level': 'INFO',
-            },
-        },
-        'loggers': {
-            # 自作したログ出力
-            '': {
-                'handlers': ['file'],
-                'level': 'INFO',
-                'propagate': False,
-            },
-            # Djangoの警告・エラー
-            'django': {
-                'handlers': ['file'],
-                'level': 'INFO',
-                'propagate': False,
-            },
-        },
-    }
+    django_heroku.settings(locals())
 
+    db_from_env = dj_database_url.config()
+    DATABASES['default'].update(db_from_env)
 
