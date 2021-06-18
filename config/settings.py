@@ -181,7 +181,7 @@ if not DEBUG:
             'file': {
                 'level': 'INFO',
                 'class': 'logging.FileHandler',
-                'filename': '/var/log/{}/app.log'.format(PROJECT_NAME),
+                'filename': 'pycheck.log',
                 'formatter': 'production',
             },
         },
