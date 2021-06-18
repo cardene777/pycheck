@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -55,6 +57,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'config.urls'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dfv9woe7f',
+    'API_KEY': '827488569461234',
+    'API_SECRET': 'G3rU1jOdM39jo1WINO9mdfst2WA'
+}
 
 TEMPLATES = [
     {
@@ -126,7 +134,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 LOGIN_URL = 'accounts:login'  # ログインしていないときのリダイレクト先
 LOGIN_REDIRECT_URL = 'skill:home'  # ログイン後のリダイレクト先
@@ -145,6 +152,8 @@ if DEBUG:
         }
     }
 
+    MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
 if not DEBUG:
     import dj_database_url
 
@@ -152,6 +161,8 @@ if not DEBUG:
 
     db_from_env = dj_database_url.config()
     DATABASES['default'].update(db_from_env)
+
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
 
