@@ -18,7 +18,7 @@ class MyLogoutView(LoginRequiredMixin, LogoutView):
 
 
 class SignUpView(CreateView):
-    form_class = UserCreationForm
+    form_class = forms.SignUpForm
     template_name = "accounts/signup.html"
     success_url = reverse_lazy("accounts:login")
 

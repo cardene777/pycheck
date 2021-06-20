@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 from .models import Image, SkillCheckData, Profile
-from gacha.models import Count
 from .ocr import ocr
 
 import logging
@@ -20,9 +19,10 @@ def upload(request):
         # form = ImageForm(request.POST, request.FILES)
         username = request.POST["username"]
         file = request.FILES["file"]
+        print(username)
         image = Image(username=username, image=file)
         image.save()
-        file_name = Image.objects.last(username=username).image
+        file_name = Image.objects.filter(username=username).last().image
         username, question_number, question_level, answer_time, score = ocr(file_name)
         if score == "0" or score == 0 or score == "o" or score == "O":
             score = 0
@@ -31,14 +31,14 @@ def upload(request):
             data = SkillCheckData(username=username, question_number=question_number, question_level=question_level,
                                   answer_time=answer_time, score=score)
             data.save()
-        try:
-            user_count = Count.objects.get(username=username)
-            user_count.counter += 1
-            user_count.save()
-        except:
-            user_count = Count(username=username, counter=1)
-            user_count.save()
-        Image.objects.filter(image=file).delete()
+        # try:
+        #     user_count = Count.objects.get(username=username)
+        #     user_count.counter += 1
+        #     user_count.save()
+        # except:
+        #     user_count = Count(username=username, counter=1)
+        #     user_count.save()
+        # Image.objects.filter(image=file).delete()
     return render(request, 'skill/upload.html')
 
 
