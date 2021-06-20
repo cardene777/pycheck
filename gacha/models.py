@@ -14,7 +14,7 @@ class GachaTitle(models.Model):
 
     image = models.ImageField(
         verbose_name="タイトル画像",
-        upload_to="",
+        upload_to="images/",
         default="paiza.png"
     )
 

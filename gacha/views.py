@@ -3,11 +3,6 @@ from django.views import generic
 from .models import GachaTitle, GachaItem, Count, MyGachaItems
 import random
 
-import logging
-
-logger = logging.getLogger('gacha')
-logger.info("log info test!")
-
 
 def gacha(requests, username):
     gacha_titles = GachaTitle.objects.all()
