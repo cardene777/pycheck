@@ -11,3 +11,6 @@ urlpatterns = [
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+from .settings import my_customized_server_error
+handler500 = my_customized_server_error
