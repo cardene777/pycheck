@@ -1,6 +1,8 @@
 import pyocr
 import re
 import pyocr.builders
+import io
+import requests
 
 
 def ocr(image_path):
@@ -10,9 +12,11 @@ def ocr(image_path):
     tools = pyocr.get_available_tools()
     tool = tools[0]
 
+    image_path = f"https://res.cloudinary.com/dfv9woe7f/image/upload/v1624152195/{image_path}"
+
     txt = tool.image_to_string(
         # Image.open(f"/Users/akira/Desktop/local/develop/pycheck/media/{str(image_path)}"),
-        Image.open(f"https://res.cloudinary.com/dfv9woe7f/image/upload/v1624152195/{image_path}.png"),
+        Image.open(io.BytesIO(requests.get(image_path).content)),
         lang="jpn",
         builder=pyocr.builders.TextBuilder()
     )
