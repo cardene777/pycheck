@@ -2,9 +2,7 @@ db.sqlite3
 __pycache__/
 *.pyc
 .DS_Store
-media/
 .env
 .idea/
 pycheck.log
-migrations/
 logsdjango.log
