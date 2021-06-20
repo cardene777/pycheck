@@ -12,7 +12,7 @@ def ocr(image_path):
 
     txt = tool.image_to_string(
         # Image.open(f"/Users/akira/Desktop/local/develop/pycheck/media/{str(image_path)}"),
-        Image.open(f"/app/{image_path}"),
+        Image.open(f"https://res.cloudinary.com/dfv9woe7f/image/upload/v1624152195/media/images/{image_path}"),
         lang="jpn",
         builder=pyocr.builders.TextBuilder()
     )
