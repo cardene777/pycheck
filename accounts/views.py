@@ -24,7 +24,14 @@ class SignUpView(CreateView):
 
 
 def profile(request, username):
-    if SkillCheckData.objects.filter(username=username).count() == 0:
+    try:
+        if SkillCheckData.objects.filter(username=username).count() == 0:
+            params = {
+                "username": username,
+                "message": "No"
+            }
+            return render(request, "accounts/profile.html", params)
+    except:
         params = {
             "username": username,
             "message": "No"
