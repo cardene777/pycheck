@@ -78,7 +78,6 @@ class ProfileAdd(generic.CreateView):
 def export(request):
     """
     data export csv file
-    :param collection_value:
     :param request:
     :return: csv file
     """
