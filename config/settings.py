@@ -76,6 +76,8 @@ TEMPLATES = [
     },
 ]
 
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
+
 WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
@@ -89,6 +91,7 @@ DATABASES = {
         'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '',
+        'ATOMIC_REQUESTS': True,
     }
 }
 
@@ -134,9 +137,11 @@ LOGIN_URL = 'accounts:login'  # ログインしていないときのリダイレ
 LOGIN_REDIRECT_URL = 'skill:home'  # ログイン後のリダイレクト先
 LOGOUT_REDIRECT_URL = 'skill:home'  # ログアウト後のリダイレクト先
 
+SITE_ID = 1
+
+
 # デバッグ設定
 # DEBUG = True
-
 # ローカル用設定
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
@@ -144,6 +149,7 @@ if DEBUG:
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
+            'ATOMIC_REQUESTS': True,
         }
     }
 

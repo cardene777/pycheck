@@ -45,6 +45,11 @@
                                 <a class="nav-link" href="{% url 'accounts:signup' %}"><strong>SignUp</strong></a>
                             </li>
                         {% endif %}
+                        {% if user.username == "heku" %}
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{% url 'skill:export' %}"><strong>Export</strong></a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

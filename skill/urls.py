@@ -9,6 +9,9 @@ urlpatterns = [
     path("upload_done/", views.UploadDone.as_view(), name="upload_done"),
     # path("results_register/", views.results_register, name="results_register"),
     path("profile_add/", views.ProfileAdd.as_view(), name="profile_add"),
+    # path("aggregation/", views.aggregation, name="aggregation"),
+    path("export/", views.export, name="export")
 ]
+
 
 

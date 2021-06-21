@@ -12,6 +12,11 @@ class MyLoginView(LoginView):
     form_class = forms.LoginForm
     template_name = "accounts/login.html"
 
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     messages.add_message(self.request, messages.INFO, 'ログインできました。')
+    #     return context
+
 
 class MyLogoutView(LoginRequiredMixin, LogoutView):
     template_name = "accounts/logout.html"
@@ -48,3 +53,15 @@ def profile(request, username):
     }
 
     return render(request, "accounts/profile.html", params)
+
+
+# def aggregation(requests):
+#     if requests.method == "POST":
+#
+#
+#         params = {
+#             "user_datas": user_datas,
+#             "username": username,
+#         }
+#
+#         return render(requests, "accounts/profile.html", params)

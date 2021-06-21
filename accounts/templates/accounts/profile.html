@@ -10,8 +10,17 @@
             <hr class="my-4">
             <h4>{{ username }}</h4>
             {% if message == No %}
-                <h4>平均正答率：{{ average_current }}</h4>
+                <h4>全体平均正答率：{{ average_current }}</h4>
             {% endif %}
+{#            <form action="{% url 'skill:aggregation' %}" method="post">#}
+{#                {% csrf_token %}#}
+{#                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">#}
+{#                    <option selected>ランクを指定してください。</option>#}
+{#                    <option value="1">One</option>#}
+{#                </select>#}
+{#                <input hidden type="text" name="questions" value="{{ questions }}">#}
+{#                <input hidden id="nexr-question" type="submit" value="集計" style="margin: 5px 0">#}
+{#            </form>#}
         </div>
     </div>
     <div class="container">

@@ -3,11 +3,9 @@ from django.urls import reverse_lazy
 from django.views import generic
 from .models import Image, SkillCheckData, Profile
 from .ocr import ocr
-
-import logging
-
-logger = logging.getLogger('skill')
-logger.info("log info test!")
+from django.contrib import messages
+from django.http import HttpResponse
+import csv
 
 
 class HomeView(generic.TemplateView):
@@ -75,3 +73,22 @@ class ProfileAdd(generic.CreateView):
     template_name = "skill/profile_add.html"
     success_url = reverse_lazy('skill:home')
     fields = ['username', 'name']
+
+
+def export(request):
+    """
+    data export csv file
+    :param collection_value:
+    :param request:
+    :return: csv file
+    """
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="data.csv"'
+    # HttpResponseオブジェクトはファイルっぽいオブジェクトなので、csv.writerにそのまま渡せます。
+    writer = csv.writer(response)
+    writer.writerow(["pk", "ユーザ名", "問題番号", "問題レベル", "回答時間", "点数"])
+    for data in SkillCheckData.objects.all():
+        writer.writerow(
+            [data.pk, data.username, data.question_number, data.question_level,
+             data.answer_time, data.score])
+    return response
