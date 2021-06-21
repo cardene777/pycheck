@@ -62,8 +62,7 @@ def translate(instance, filename):
     kakasi.setMode('K', 'a')
     kakasi.setMode('J', 'a')
     conv = kakasi.getConverter()
-    save_path = f"/images/{conv.do(filename)}"
-    return conv.do(filename)
+    return f"images/{conv.do(filename)}"
 
 
 class Image(models.Model):
@@ -87,32 +86,32 @@ class Image(models.Model):
         return str(self.username)
 
 
-class Result(models.Model):
-    class Meta:
-        verbose_name = "成績"
-        verbose_name_plural = '成績'
-
-    name = models.ForeignKey(
-        Profile,
-        verbose_name="本名",
-        on_delete=models.CASCADE
-    )
-
-    present_number = models.IntegerField(
-        verbose_name="提出数",
-        default=0,
-    )
-
-    total_points = models.IntegerField(
-        verbose_name="合計点",
-        default=0
-    )
-
-    average_point = models.IntegerField(
-        verbose_name="平均点",
-        default=0
-    )
-
-    def __str__(self):
-        return str(self.average_point)
+# class Result(models.Model):
+#     class Meta:
+#         verbose_name = "成績"
+#         verbose_name_plural = '成績'
+#
+#     name = models.ForeignKey(
+#         Profile,
+#         verbose_name="本名",
+#         on_delete=models.CASCADE
+#     )
+#
+#     present_number = models.IntegerField(
+#         verbose_name="提出数",
+#         default=0,
+#     )
+#
+#     total_points = models.IntegerField(
+#         verbose_name="合計点",
+#         default=0
+#     )
+#
+#     average_point = models.IntegerField(
+#         verbose_name="平均点",
+#         default=0
+#     )
+#
+#     def __str__(self):
+#         return str(self.average_point)
 

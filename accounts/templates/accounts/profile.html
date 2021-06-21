@@ -10,21 +10,22 @@
             <hr class="my-4">
             <h4>{{ username }}</h4>
             {% if message == No %}
-                <h4>平均正答率：{{ average_current }}</h4>
+                <h4>全体平均正答率：{{ average_current }}</h4>
             {% endif %}
+{#            <form action="{% url 'skill:aggregation' %}" method="post">#}
+{#                {% csrf_token %}#}
+{#                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">#}
+{#                    <option selected>ランクを指定してください。</option>#}
+{#                    <option value="1">One</option>#}
+{#                </select>#}
+{#                <input hidden type="text" name="questions" value="{{ questions }}">#}
+{#                <input hidden id="nexr-question" type="submit" value="集計" style="margin: 5px 0">#}
+{#            </form>#}
         </div>
     </div>
     <div class="container">
         {% if message == No %}
             <div class="container">
-                <div class="btns">
-                    <p class="btn-content btns-btn">
-                        <a href="{% url 'gacha:gacha_item_list' user.username %}" class="btn" style="background-color: #77c7e2; color: #303f42;" tabindex="-1" role="button" aria-disabled="true">
-                            取得した画像を確認
-                            <i class="far fa-images"></i>
-                        </a>
-                    </p>
-                </div>
                 <div class="row">
                     {% for user_data in user_datas %}
                     <div class="col-3" style="margin-bottom: 2rem">
