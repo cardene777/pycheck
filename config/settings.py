@@ -139,7 +139,6 @@ LOGOUT_REDIRECT_URL = 'skill:home'  # ログアウト後のリダイレクト先
 
 SITE_ID = 1
 
-
 # デバッグ設定
 # DEBUG = True
 
