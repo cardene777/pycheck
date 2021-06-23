@@ -77,17 +77,17 @@ class Result(models.Model):
         max_length=100
     )
 
-    present_number = models.IntegerField(
+    present_number = models.FloatField(
         verbose_name="提出数",
         default=0,
     )
 
-    total_points = models.IntegerField(
+    total_points = models.FloatField(
         verbose_name="合計点",
         default=0
     )
 
-    average_point = models.IntegerField(
+    average_point = models.FloatField(
         verbose_name="平均点",
         default=0
     )
