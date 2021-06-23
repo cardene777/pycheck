@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
-from .models import Image, SkillCheckData, Profile, Result
+from .models import Image, SkillCheckData, Result
 from .ocr import ocr, ocr_result
 from django.contrib import messages
 from django.http import HttpResponse
