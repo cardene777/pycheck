@@ -51,13 +51,6 @@ def results_register(request):
     return render(request, 'skill/results_register.html')
 
 
-class ProfileAdd(generic.CreateView):
-    model = Profile
-    template_name = "skill/profile_add.html"
-    success_url = reverse_lazy('skill:home')
-    fields = ['username', 'name']
-
-
 def export(request):
     """
     data export csv file

@@ -1,25 +1,6 @@
 from django.db import models
 
 
-class Profile(models.Model):
-    class Meta:
-        verbose_name = "プロフィール"
-        verbose_name_plural = 'プロフィール'
-
-    username = models.CharField(
-        verbose_name="ユーザー名",
-        max_length=100
-    )
-
-    name = models.CharField(
-        verbose_name="本名",
-        max_length=100
-    )
-
-    def __str__(self):
-        return str(self.name)
-
-
 class SkillCheckData(models.Model):
     class Meta:
         verbose_name = "画像データ"
@@ -113,4 +94,3 @@ class Result(models.Model):
 
     def __str__(self):
         return str(self.average_point)
-

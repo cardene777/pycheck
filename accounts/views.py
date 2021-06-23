@@ -40,13 +40,6 @@ def profile(request, username):
             "result": result
         }
         return render(request, "accounts/profile.html", params)
-    # except:
-    #     params = {
-    #         "username": username,
-    #         "message": "No",
-    #         "result": result
-    #     }
-    #     return render(request, "accounts/profile.html", params)
     user_datas = SkillCheckData.objects.filter(username=username)
     username = user_datas.values_list("username", flat=True)[0]
     socores = [int(user_score) for user_score in user_datas.values_list("score", flat=True)]
