@@ -14,7 +14,6 @@ def ocr(image_path):
     image_path = f"https://res.cloudinary.com/dfv9woe7f/image/upload/v1624152195/{image_path}"
 
     txt = tool.image_to_string(
-        # Image.open(f"/Users/akira/Desktop/local/develop/pycheck/media/{str(image_path)}"),
         Image.open(io.BytesIO(requests.get(image_path).content)),
         lang="jpn",
         builder=pyocr.builders.TextBuilder()
@@ -59,13 +58,10 @@ def ocr_result(image_path):
     tool = tools[0]
 
     image_path = f"https://res.cloudinary.com/dfv9woe7f/image/upload/v1624152195/{image_path}"
-    # OCR エンジン取得
-    tools = pyocr.get_available_tools()
-    tool = tools[0]
 
     # 使用する画像を指定してOCRを実行
     txt = tool.image_to_string(
-        Image.open(image_path),
+        Image.open(io.BytesIO(requests.get(image_path).content)),
         lang="jpn",
         builder=pyocr.builders.TextBuilder()
     )
