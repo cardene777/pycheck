@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Image, SkillCheckData, Profile
+from .models import Image, SkillCheckData, Profile, Result
 
 
 class ImageAdmin(admin.ModelAdmin):
@@ -15,7 +15,7 @@ class ProfileAdmin(admin.ModelAdmin):
 
 
 class ResultAdmin(admin.ModelAdmin):
-    list_display = ('name', 'present_number', 'total_points', 'average_point')
+    list_display = ('username', 'present_number', 'total_points', 'average_point')
 
 
 admin.site.register(SkillCheckData, SkillCheckDataAdmin)
