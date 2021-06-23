@@ -65,7 +65,7 @@ def ocr_result(image_path):
 
     # 使用する画像を指定してOCRを実行
     txt = tool.image_to_string(
-        Image.open("skill.png"),
+        Image.open(image_path),
         lang="jpn",
         builder=pyocr.builders.TextBuilder()
     )
