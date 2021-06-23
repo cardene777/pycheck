@@ -141,7 +141,8 @@ SITE_ID = 1
 
 
 # デバッグ設定
-# DEBUG = True
+DEBUG = True
+
 # ローカル用設定
 if DEBUG:
     ALLOWED_HOSTS = ["*"]

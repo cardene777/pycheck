@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
-from .models import Image, SkillCheckData, Profile
-from .ocr import ocr
+from .models import Image, SkillCheckData, Profile, Result
+from .ocr import ocr, ocr_result
 from django.contrib import messages
 from django.http import HttpResponse
 import csv
@@ -14,10 +14,8 @@ class HomeView(generic.TemplateView):
 
 def upload(request):
     if request.method == "POST":
-        # form = ImageForm(request.POST, request.FILES)
         username = request.POST["username"]
         file = request.FILES["file"]
-        print(username)
         image = Image(username=username, image=file)
         image.save()
         file_name = Image.objects.filter(username=username).last().image
@@ -29,14 +27,6 @@ def upload(request):
             data = SkillCheckData(username=username, question_number=question_number, question_level=question_level,
                                   answer_time=answer_time, score=score)
             data.save()
-        # try:
-        #     user_count = Count.objects.get(username=username)
-        #     user_count.counter += 1
-        #     user_count.save()
-        # except:
-        #     user_count = Count(username=username, counter=1)
-        #     user_count.save()
-        # Image.objects.filter(image=file).delete()
     return render(request, 'skill/upload.html')
 
 
@@ -44,28 +34,19 @@ class UploadDone(generic.TemplateView):
     template_name = "skill/upload_done.html"
 
 
-# def results_register(request):
-#     if request.method == "POST":
-#         # form = ImageForm(request.POST, request.FILES)
-#         username = request.POST["username"]
-#         file = request.FILES["file"]
-#         name: str = str(Profile.objects.filter(username=username)[0].name)
-#         name_model: int = Profile.objects.get(username=username)
-#
-#         image = Image(username=name, image=file)
-#         image.save()
-#
-#         file_name = Image.objects.values_list("image", flat=True).last()
-#         present_number, total_points, average_point = ocr.ocr_result(file_name)
-#         name_model.result_set.create(present_number=present_number, total_points=total_points, average_point=average_point)
-#         # result = Result(name=int(name_id), present_number=present_number, total_points=total_points,
-#         #                 average_point=average_point)
-#         # result.save()
-#
-#         # 画像削除
-#         Image.objects.filter(image=file).delete()
-#
-#     return render(request, 'skill/results_register.html')
+def results_register(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        file = request.FILES["file"]
+        image = Image(username=username, image=file)
+        image.save()
+        file_name = Image.objects.filter(username=username).last().image
+        present_number, total_points, average_point = ocr_result(file_name)
+        data = Result(username=username, present_number=present_number, total_points=total_points,
+                      average_point=average_point)
+        data.save()
+
+    return render(request, 'skill/results_register.html')
 
 
 class ProfileAdd(generic.CreateView):
