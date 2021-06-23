@@ -14,11 +14,11 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display = ('username', 'name')
 
 
-# class ResultAdmin(admin.ModelAdmin):
-#     list_display = ('name', 'present_number', 'total_points', 'average_point')
+class ResultAdmin(admin.ModelAdmin):
+    list_display = ('name', 'present_number', 'total_points', 'average_point')
 
 
 admin.site.register(SkillCheckData, SkillCheckDataAdmin)
 admin.site.register(Image, ImageAdmin)
 admin.site.register(Profile, ProfileAdmin)
-# admin.site.register(Result, ResultAdmin)
+admin.site.register(Result, ResultAdmin)
