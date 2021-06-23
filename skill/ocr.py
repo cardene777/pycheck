@@ -68,9 +68,9 @@ def ocr_result(image_path):
 
     split_txt = txt.replace("\n", "").split(" ")
 
-    def change(text):
-        new_text = re.sub("[あ-んa-zア-ン?A-Z※。還]+", "", text)
-        new_text = re.sub("[^0-9]+", "", text)
+    def change(tet):
+        new_text = re.sub("[あ-んa-zア-ン?A-Z※。還]+", "", tet)
+        new_text = re.sub("[^0-9]+", "", tet)
         return new_text
 
     new_texts = []
