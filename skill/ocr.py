@@ -58,9 +58,12 @@ def ocr_result(image_path):
     tools = pyocr.get_available_tools()
     tool = tools[0]
 
-    image_path: str = f"https://res.cloudinary.com/dfv9woe7f/image/upload/v1624152195/{image_path}"
+    # image_path = f"https://res.cloudinary.com/dfv9woe7f/image/upload/v1624152195/{image_path}"
+    image_path: str = f"/Users/akira/Desktop/local/develop/pycheck/media/{str(image_path)}"
 
-    img_org = Image.open(io.BytesIO(requests.get(image_path).content))
+    img_org = Image.open(image_path)
+
+    # img_org = Image.open(io.BytesIO(requests.get(image_path).content))
     img_rgb = img_org.convert("RGB")
     pixels = img_rgb.load()
 

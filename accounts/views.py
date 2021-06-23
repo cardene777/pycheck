@@ -4,7 +4,7 @@ from django.views.generic import TemplateView, CreateView
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from . import forms
-from skill.models import SkillCheckData
+from skill.models import SkillCheckData, Result
 from django.shortcuts import render
 
 
@@ -29,27 +29,34 @@ class SignUpView(CreateView):
 
 
 def profile(request, username):
-    try:
-        if SkillCheckData.objects.filter(username=username).count() == 0:
-            params = {
-                "username": username,
-                "message": "No"
-            }
-            return render(request, "accounts/profile.html", params)
-    except:
+    result = "no"
+    if Result.objects.filter(username=username).exists():
+        result = Result.objects.filter(username=username).last()
+
+    if not SkillCheckData.objects.filter(username=username).exists():
         params = {
             "username": username,
-            "message": "No"
+            "message": "No",
+            "result": result
         }
         return render(request, "accounts/profile.html", params)
+    # except:
+    #     params = {
+    #         "username": username,
+    #         "message": "No",
+    #         "result": result
+    #     }
+    #     return render(request, "accounts/profile.html", params)
     user_datas = SkillCheckData.objects.filter(username=username)
     username = user_datas.values_list("username", flat=True)[0]
     socores = [int(user_score) for user_score in user_datas.values_list("score", flat=True)]
     average_current = sum(socores) // len(socores)
+
     params = {
         "user_datas": user_datas,
         "username": username,
-        "average_current": average_current
+        "average_current": average_current,
+        "result": result
     }
 
     return render(request, "accounts/profile.html", params)
