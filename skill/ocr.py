@@ -70,7 +70,7 @@ def ocr_result(image_path):
 
     def change(tet):
         new_text = re.sub("[あ-んa-zア-ン?A-Z※。還]+", "", tet)
-        new_text = re.sub("[^0-9]+", "", tet)
+        new_text = re.sub("[^0-9.]+", "", tet)
         return new_text
 
     new_texts = []
