@@ -27,6 +27,7 @@ def upload(request):
             data = SkillCheckData(username=username, question_number=question_number, question_level=question_level,
                                   answer_time=answer_time, score=score)
             data.save()
+            Image.objects.filter(username=username).delete()
     return render(request, 'skill/upload.html')
 
 
@@ -45,15 +46,9 @@ def results_register(request):
         data = Result(username=username, present_number=present_number, total_points=total_points,
                       average_point=average_point)
         data.save()
+        Image.objects.filter(username=username).delete()
 
     return render(request, 'skill/results_register.html')
-
-
-class ProfileAdd(generic.CreateView):
-    model = Profile
-    template_name = "skill/profile_add.html"
-    success_url = reverse_lazy('skill:home')
-    fields = ['username', 'name']
 
 
 def export(request):

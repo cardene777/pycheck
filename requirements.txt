@@ -10,3 +10,4 @@ django-crispy-forms==1.11.2
 pykakasi
 dj-database-url
 django-cloudinary-storage
+

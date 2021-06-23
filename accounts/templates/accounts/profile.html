@@ -27,14 +27,17 @@
         {% if result == "no" %}
             <p>成績はまだ登録されていません。</p>
         {% else %}
-            <div class="card text-white bg-success">
-                <div class="card-body">
-                    <h5 class="card-title">回答数：{{ result.present_number }}</h5>
-                    <h5 class="card-title">合計点数：{{ result.total_points }}</h5>
-                    <h5 class="card-title">平均点：{{ result.average_point }}</h5>
-                    <a href="https://paiza.jp/student/mypage/status" target="_blank" class="btn btn-warning">
-                        Go Paiza Status
-                    </a>
+            <div class="container" style="margin-bottom: 1rem">
+                <div class="card text-white bg-primary">
+                    <div class="card-body">
+                        <h5 class="card-title">回答数：{{ result.present_number }}</h5>
+                        <h5 class="card-title">合計点数：{{ result.total_points }}</h5>
+                        <h5 class="card-title">平均点：{{ result.average_point }}</h5>
+                        <a href="https://paiza.jp/student/mypage/status" target="_blank" class="btn"
+                           style="background-color:darkcyan;">
+                            Go Paiza Status
+                        </a>
+                    </div>
                 </div>
             </div>
         {% endif %}
