@@ -79,4 +79,4 @@ def ocr_result(image_path):
         if text != "":
             new_texts.append(text)
 
-    return int(new_texts[0]), int(new_texts[1]), int(new_texts[2])
+    return float(new_texts[0]), float(new_texts[1]), float(new_texts[2])
