@@ -43,6 +43,8 @@ def results_register(request):
         image.save()
         file_name = Image.objects.filter(username=username).last().image
         present_number, total_points, average_point = ocr_result(file_name)
+        if Result.objects.filter(username=username).exists():
+            Result.objects.filter(username=username).delete()
         data = Result(username=username, present_number=present_number, total_points=total_points,
                       average_point=average_point)
         data.save()
