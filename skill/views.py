@@ -19,7 +19,7 @@ def upload(request):
         image = Image(username=username, image=file)
         image.save()
         file_name = Image.objects.filter(username=username).last().image
-        username, question_number, question_level, answer_time, score = ocr(file_name)
+        _, question_number, question_level, answer_time, score = ocr(file_name)
         if score == "0" or score == 0 or score == "o" or score == "O":
             score = 0
         data_list = SkillCheckData.objects.filter(username=username).values_list("question_number", flat=True)
