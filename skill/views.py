@@ -5,6 +5,7 @@ from .ocr import ocr, ocr_result
 
 from django.http import HttpResponse
 import csv
+import re
 
 
 class HomeView(generic.TemplateView):
@@ -21,6 +22,9 @@ def upload(request):
         _, question_number, question_level, answer_time, score = ocr(file_name)
         if score == "0" or score == 0 or score == "o" or score == "O":
             score = 0
+        else:
+            score = int(score.translate(str.maketrans({'o': '0', 'O': '0'})))
+
         data_list = SkillCheckData.objects.filter(username=username).values_list("question_number", flat=True)
         if question_number not in data_list:
             data = SkillCheckData(username=username, question_number=question_number, question_level=question_level,

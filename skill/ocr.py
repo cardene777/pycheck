@@ -68,6 +68,11 @@ def ocr_result(image_path):
 
     split_txt = txt.replace("\n", "").split(" ")
 
+    if "受験結果問題" in split_txt and "受験結果" in split_txt and "解答時間:" in split_txt:
+        class NotResultError(Exception):
+            pass
+        raise NotResultError('成績結果画像ではありません。')
+
     def change(tet):
         new_text = re.sub("[あ-んa-zア-ン?A-Z※。還]+", "", tet)
         new_text = re.sub("[^0-9.]+", "", tet)
