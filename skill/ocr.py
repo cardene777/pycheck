@@ -5,29 +5,35 @@ import io
 import requests
 
 
-def ocr(image_path):
+def change_text(text):
+    new_text = re.sub("[あ-ん]", "", text)
+    return new_text
+
+
+def ocr_py(image_path):
     from PIL import Image
-    # OCR エンジン取得
+
     tools = pyocr.get_available_tools()
     tool = tools[0]
-
-    image_path = f"https://res.cloudinary.com/dfv9woe7f/image/upload/v1624152195/{image_path}"
 
     txt = tool.image_to_string(
         Image.open(io.BytesIO(requests.get(image_path).content)),
         lang="jpn",
         builder=pyocr.builders.TextBuilder()
     )
+    return txt
 
+
+def ocr(image_path):
+
+    image_path = f"https://res.cloudinary.com/dfv9woe7f/image/upload/v1624152195/{image_path}"
+
+    txt = ocr_py(image_path)
     split_txt = txt.replace("\n", "").split(" ")
-
-    def change(text):
-        new_text = re.sub("[あ-ん]", "", text)
-        return new_text
 
     new_texts = []
     for text in split_txt:
-        text = change(text)
+        text = change_text(text)
         if text != "":
             new_texts.append(text)
 
@@ -52,23 +58,19 @@ def ocr(image_path):
 
 
 def ocr_result(image_path):
-    from PIL import Image
-    # OCR エンジン取得
-    tools = pyocr.get_available_tools()
-    tool = tools[0]
-
     image_path = f"https://res.cloudinary.com/dfv9woe7f/image/upload/v1624152195/{image_path}"
 
-    # 使用する画像を指定してOCRを実行
-    txt = tool.image_to_string(
-        Image.open(io.BytesIO(requests.get(image_path).content)),
-        lang="jpn",
-        builder=pyocr.builders.TextBuilder()
-    )
+    txt = ocr_py(image_path)
 
     split_txt = txt.replace("\n", "").split(" ")
 
-    if "受験結果問題" in split_txt and "受験結果" in split_txt and "解答時間:" in split_txt:
+    new_texts = []
+    for text in split_txt:
+        text = change_text(text)
+        if text != "":
+            new_texts.append(text)
+
+    if "受験結果問題" in new_texts or "受験結果" in new_texts or "解答時間:" in new_texts:
         class NotResultError(Exception):
             pass
         raise NotResultError('成績結果画像ではありません。')
