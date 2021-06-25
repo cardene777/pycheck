@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}export{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="bg-light p-3 p-sm-5 my-4 rounded">
+            <h1 class="display-4">Export Data</h1>
+            <hr class="my-4">
+            <p>データ取り出し</p>
+        </div>
+    </div>
+    <div class="container">
+        <h5>Paizaスキルチェック結果</h5>
+        <p>
+            <a class="btn btn-outline-success" href="{% url 'skill:data_export' %}" role="button">
+                <strong>Export</strong>
+            </a>
+        </p>
+
+        <h5>成績結果</h5>
+        <p>
+            <a class="btn btn-outline-success" href="{% url 'skill:result_export' %}" role="button">
+                <strong>Export</strong>
+            </a>
+        </p>
+    </div>
+{% endblock %}

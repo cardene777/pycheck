@@ -1,11 +1,7 @@
 from django.shortcuts import render
-from django.urls import reverse_lazy
 from django.views import generic
 from .models import Image, SkillCheckData, Result
 from .ocr import ocr, ocr_result
-from django.contrib import messages
-from django.http import HttpResponse
-import csv
 
 
 class HomeView(generic.TemplateView):
@@ -53,36 +49,6 @@ def results_register(request):
     return render(request, 'skill/results_register.html')
 
 
-def export(request):
-    """
-    data export csv file
-    :param request:
-    :return: csv file
-    """
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="data.csv"'
-    # HttpResponseオブジェクトはファイルっぽいオブジェクトなので、csv.writerにそのまま渡せます。
-    writer = csv.writer(response)
-    writer.writerow(["pk", "ユーザー名", "問題番号", "問題レベル", "回答時間", "点数"])
-    for data in SkillCheckData.objects.all():
-        writer.writerow(
-            [data.pk, data.username, data.question_number, data.question_level,
-             data.answer_time, data.score])
-    return response
+class Export(generic.TemplateView):
+    template_name = "skill/export.html"
 
-
-def result_export(request):
-    """
-    data export csv file
-    :param request:
-    :return: csv file
-    """
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="result.csv"'
-    # HttpResponseオブジェクトはファイルっぽいオブジェクトなので、csv.writerにそのまま渡せます。
-    writer = csv.writer(response)
-    writer.writerow(["pk", "ユーザー名", "提出数", "合計点", "平均点"])
-    for data in Result.objects.all():
-        writer.writerow(
-            [data.pk, data.username, data.present_number, data.total_points, data.average_point])
-    return response
