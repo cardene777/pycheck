@@ -10,19 +10,21 @@
             <p>データ取り出し</p>
         </div>
     </div>
-    <div class="container">
-        <h5>Paizaスキルチェック結果</h5>
-        <p>
-            <a class="btn btn-outline-success" href="{% url 'skill:data_export' %}" role="button">
-                <strong>Export</strong>
-            </a>
-        </p>
+    {% if user.username == "heku" %}
+        <div class="container">
+            <h5>Paizaスキルチェック結果</h5>
+            <p>
+                <a class="btn btn-outline-success" href="{% url 'skill:data_export' %}" role="button">
+                    <strong>Export</strong>
+                </a>
+            </p>
 
-        <h5>成績結果</h5>
-        <p>
-            <a class="btn btn-outline-success" href="{% url 'skill:result_export' %}" role="button">
-                <strong>Export</strong>
-            </a>
-        </p>
-    </div>
+            <h5>成績結果</h5>
+            <p>
+                <a class="btn btn-outline-success" href="{% url 'skill:result_export' %}" role="button">
+                    <strong>Export</strong>
+                </a>
+            </p>
+        </div>
+    {% endif %}
 {% endblock %}
