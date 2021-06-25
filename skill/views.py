@@ -3,6 +3,9 @@ from django.views import generic
 from .models import Image, SkillCheckData, Result
 from .ocr import ocr, ocr_result
 
+from django.http import HttpResponse
+import csv
+
 
 class HomeView(generic.TemplateView):
     template_name = "skill/home.html"
