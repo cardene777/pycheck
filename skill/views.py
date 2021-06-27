@@ -65,7 +65,7 @@ def results_register(request):
         Image.objects.filter(username=username).delete()
 
         # 画像削除
-        cloudinary.api.delete_resources("media/images/")
+        cloudinary.api.delete_all_resources(type="upload")
 
     return render(request, 'skill/results_register.html')
 
