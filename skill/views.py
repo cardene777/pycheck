@@ -7,6 +7,14 @@ from django.http import HttpResponse
 import csv
 import re
 
+import cloudinary
+
+cloudinary.config(
+    cloud_name="dfv9woe7f",
+    api_key="827488569461234",
+    api_secret="G3rU1jOdM39jo1WINO9mdfst2WA"
+)
+
 
 class HomeView(generic.TemplateView):
     template_name = "skill/home.html"
@@ -31,6 +39,9 @@ def upload(request):
                                   answer_time=answer_time, score=score)
             data.save()
             Image.objects.filter(username=username).delete()
+
+        # 画像削除
+        cloudinary.api.delete_resources("media/images/")
     return render(request, 'skill/upload.html')
 
 
@@ -52,6 +63,9 @@ def results_register(request):
                       average_point=average_point)
         data.save()
         Image.objects.filter(username=username).delete()
+
+        # 画像削除
+        cloudinary.api.delete_resources("media/images/")
 
     return render(request, 'skill/results_register.html')
 
